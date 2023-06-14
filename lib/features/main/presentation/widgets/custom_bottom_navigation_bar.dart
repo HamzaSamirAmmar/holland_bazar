@@ -27,6 +27,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Theme.of(context).colorScheme.primary,
+        selectedLabelStyle: TextStyle(
+          color: Theme.of(context).colorScheme.primary,
+          fontWeight: FontWeight.w400,
+        ),
+        unselectedLabelStyle: TextStyle(
+          color: Theme.of(context).textTheme.subtitle1!.color,
+          fontWeight: FontWeight.w400,
+        ),
         items: <BottomNavigationBarItem>[
           ...items.map(
             (item) => BottomNavigationBarItem(
