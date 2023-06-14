@@ -16,24 +16,27 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Padding(
-          padding: EdgeInsets.symmetric(
-            horizontal: 34.w,
-          ),
-          child: Column(
-            children: [
-              SizedBox(height: 60.h),
-              const SignUpTitle(),
-              SizedBox(height: 12.h),
-              const SignUpSubtitle(),
-              SizedBox(height: 112.h),
-              const SignUpForm(),
-              SizedBox(height: 24.h),
-              const LoginText(),
-              SizedBox(height: 42.h),
-            ],
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 34.w,
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 60.h),
+                const SignUpTitle(),
+                SizedBox(height: 12.h),
+                const SignUpSubtitle(),
+                SizedBox(height: 112.h),
+                const SignUpForm(),
+                SizedBox(height: 24.h),
+                const LoginText(),
+                SizedBox(height: 42.h),
+              ],
+            ),
           ),
         ),
       ),
