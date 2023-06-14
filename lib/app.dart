@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:holland_bazar/features/login/presentation/pages/login_page.dart';
 import 'package:holland_bazar/features/main/presentation/pages/main_page.dart';
+import 'package:holland_bazar/features/sign_up/presentation/pages/sign_up_page.dart';
 import 'package:holland_bazar/features/splash/presentation/pages/splash_page.dart';
 
 import '../../core/util/over_scroll.dart';
@@ -57,7 +58,7 @@ class _AppState extends State<App> {
               child: child!,
             );
           },
-          home: const LoginPage( ),
+          home: const SignUpPage(),
           locale: const Locale('en', ''),
           onGenerateRoute: GeneratePage.onGenerate,
           supportedLocales: const [Locale('en', '')],

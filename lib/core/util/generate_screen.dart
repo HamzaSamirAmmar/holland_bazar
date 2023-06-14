@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:holland_bazar/features/onboarding_page/presentation/pages/onboarding_page.dart';
+import 'package:holland_bazar/features/sign_up/presentation/pages/sign_up_page.dart';
 
+import '../../features/login/presentation/pages/login_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
 
 class GeneratePage {
@@ -30,7 +32,15 @@ class GeneratePage {
       case PageName.loginPage:
         {
           return MaterialPageRoute(
-            builder: (context) => const SizedBox(),
+            builder: (context) => const LoginPage(),
+          );
+        }
+
+      /*** signUpPage **/
+      case PageName.signUpPage:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const SignUpPage(),
           );
         }
 
@@ -102,5 +112,6 @@ class GeneratePage {
 class PageName {
   static const String splashPage = "/";
   static const String loginPage = "/login";
+  static const String signUpPage = "/sign-up";
   static const String onboardingPage = "/onboarding";
 }
