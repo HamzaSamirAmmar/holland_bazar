@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:holland_bazar/features/login/presentation/pages/login_page.dart';
 import 'package:holland_bazar/features/main/presentation/pages/main_page.dart';
 import 'package:holland_bazar/features/splash/presentation/pages/splash_page.dart';
 
@@ -56,7 +57,7 @@ class _AppState extends State<App> {
               child: child!,
             );
           },
-          home: const MainPage(),
+          home: const LoginPage( ),
           locale: const Locale('en', ''),
           onGenerateRoute: GeneratePage.onGenerate,
           supportedLocales: const [Locale('en', '')],
@@ -94,7 +95,7 @@ class _AppState extends State<App> {
               secondary: const Color(0xFFFB7552),
               tertiary: const Color(0xFF40484E),
             ),
-            // fontFamily: "Metropolis",
+            fontFamily: "Metropolis",
           ),
         );
       },

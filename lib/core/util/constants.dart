@@ -25,6 +25,7 @@ class IconsAssets {
   static const String favorite = "assets/icons/favorite.svg";
   static const String hollandGo = "assets/icons/holland_go.svg";
   static const String account = "assets/icons/account.svg";
+  static const String googlePlusLogo = "assets/icons/google_plus_logo.svg";
 }
 
 class ImagesAssets {
