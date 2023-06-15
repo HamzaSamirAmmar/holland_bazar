@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/util/generate_screen.dart';
 import '../../../../core/widgets/Inputs/custom_text_form_field.dart';
 import '../../../../core/widgets/Inputs/number_text_form_field.dart';
 import '../../../../core/widgets/buttons/custom_text_button.dart';
@@ -25,7 +26,7 @@ class _SignUpFormState extends State<SignUpForm> {
       child: Column(
         children: [
           CustomTextFormField(
-            hint: "Name",
+            label: "Name",
             controller: _nameController,
             validator: (name) {
               if (name == null || name.isEmpty) {
@@ -40,7 +41,8 @@ class _SignUpFormState extends State<SignUpForm> {
           ),
           SizedBox(height: 28.h),
           CustomTextFormField(
-            hint: "Address",
+            label: "Address",
+            lastField: true,
             controller: _addressController,
             validator: (address) {
               if (address == null || address.isEmpty) {
@@ -55,6 +57,7 @@ class _SignUpFormState extends State<SignUpForm> {
             onPressed: () {
               if (_formKey.currentState?.validate() ?? false) {
                 // TODO: post sign up process
+                Navigator.pushNamed(context, PageName.otpPage);
               }
             },
           ),

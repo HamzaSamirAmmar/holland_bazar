@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/util/generate_screen.dart';
+
 class SignUpText extends StatelessWidget {
   const SignUpText({super.key});
 
@@ -8,7 +10,7 @@ class SignUpText extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // TODO: navigate to sign up page
+        Navigator.pushReplacementNamed(context, PageName.signUpPage);
       },
       child: RichText(
         text: TextSpan(

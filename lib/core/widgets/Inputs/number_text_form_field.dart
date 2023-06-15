@@ -4,7 +4,6 @@ import 'custom_text_form_field.dart';
 
 class NumberTextFormField extends StatelessWidget {
   final TextEditingController numberController;
-
   const NumberTextFormField({
     super.key,
     required this.numberController,
@@ -13,7 +12,7 @@ class NumberTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomTextFormField(
-      hint: 'Mobile No',
+      label: 'Mobile No',
       controller: numberController,
       keyboardType: TextInputType.number,
       validator: (number) {

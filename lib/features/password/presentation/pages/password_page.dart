@@ -1,4 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:holland_bazar/core/widgets/buttons/custom_text_button.dart';
+import 'package:holland_bazar/features/password/presentation/widgets/password_form.dart';
+
+import '../../../../core/widgets/Inputs/password_text_form_field.dart';
+import '../widgets/password_subtitle.dart';
+import '../widgets/password_title.dart';
 
 class PasswordPage extends StatefulWidget {
   const PasswordPage({super.key});
@@ -10,8 +17,27 @@ class PasswordPage extends StatefulWidget {
 class _PasswordPageState extends State<PasswordPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: 34.w,
+            ),
+            child: Column(
+              children: [
+                SizedBox(height: 60.h),
+                const PasswordTitle(),
+                SizedBox(height: 16.h),
+                const PasswordSubtitle(),
+                SizedBox(height: 35.h),
+                const PasswordForm(),
+              ],
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

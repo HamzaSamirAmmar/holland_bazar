@@ -7,13 +7,15 @@ class CustomTextFormField extends StatelessWidget {
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final TextInputType keyboardType;
+  final bool lastField;
   final bool obscure;
-  final String hint;
+  final String label;
 
   const CustomTextFormField({
     super.key,
     required this.controller,
-    required this.hint,
+    required this.label,
+    this.lastField = false,
     this.keyboardType = TextInputType.text,
     this.obscure = false,
     this.inputFormatters,
@@ -23,6 +25,7 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      textInputAction: lastField ? TextInputAction.done : TextInputAction.next,
       controller: controller,
       keyboardType: keyboardType,
       obscureText: obscure,
@@ -35,8 +38,9 @@ class CustomTextFormField extends StatelessWidget {
         fontSize: 14.sp,
       ),
       decoration: InputDecoration(
-        hintText: hint,
-        hintStyle: TextStyle(
+        alignLabelWithHint: true,
+        labelText: label,
+        labelStyle: TextStyle(
           fontSize: 14.sp,
           color: const Color(0xFFB6B7B7),
         ),
@@ -46,6 +50,7 @@ class CustomTextFormField extends StatelessWidget {
           horizontal: 35.w,
           vertical: 19.h,
         ),
+        errorMaxLines: 2,
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12.0),
         ),

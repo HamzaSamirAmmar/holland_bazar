@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:holland_bazar/core/util/constants.dart';
+import 'package:holland_bazar/core/util/generate_screen.dart';
+import 'package:holland_bazar/core/widgets/buttons/custom_text_button.dart';
 
 class RegistrationTypePage extends StatefulWidget {
   const RegistrationTypePage({super.key});
@@ -17,62 +19,6 @@ class _RegistrationTypePageState extends State<RegistrationTypePage> {
       resizeToAvoidBottomInset: false,
       body: Stack(
         children: [
-          Column(
-            children: [
-              Image.asset(ImagesAssets.registrationTypePageBackground),
-              Spacer(),
-              SizedBox(
-                width: 307.w,
-                height: 56.h,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: Theme.of(context).colorScheme.primary,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                  ),
-                  onPressed: () {},
-                  child: Text(
-                    "Login",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16.sp,
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(
-                  top: 20.h,
-                ),
-                child: SizedBox(
-                  width: 307.w,
-                  height: 56.h,
-                  child: TextButton(
-                    style: TextButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        side: BorderSide(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      "Create an Account",
-                      style: TextStyle(
-                        color: Theme.of(context).textTheme.headline1!.color,
-                        fontSize: 16.sp,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 43.h),
-            ],
-          ),
           Positioned(
             top: 257.h,
             left: 0,
@@ -93,6 +39,33 @@ class _RegistrationTypePageState extends State<RegistrationTypePage> {
                 ),
               ),
             ),
+          ),
+          Column(
+            children: [
+              Image.asset(ImagesAssets.registrationTypePageBackground),
+              const Spacer(),
+              CustomTextButton(
+                title: "Login",
+                onPressed: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    PageName.loginPage,
+                    (route) => false,
+                  );
+                },
+              ),
+              SizedBox(height: 20.h),
+              CustomTextButton(
+                title: "Create an Account",
+                filled: false,
+                onPressed: () {
+                  Navigator.of(context).pushNamedAndRemoveUntil(
+                    PageName.signUpPage,
+                    (route) => false,
+                  );
+                },
+              ),
+              SizedBox(height: 43.h),
+            ],
           ),
         ],
       ),

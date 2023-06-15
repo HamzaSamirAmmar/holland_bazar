@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:holland_bazar/features/main/presentation/pages/main_page.dart';
 import 'package:holland_bazar/features/onboarding_page/presentation/pages/onboarding_page.dart';
+import 'package:holland_bazar/features/otp/presentation/pages/otp_page.dart';
+import 'package:holland_bazar/features/password/presentation/pages/password_page.dart';
 import 'package:holland_bazar/features/sign_up/presentation/pages/sign_up_page.dart';
 
 import '../../features/login/presentation/pages/login_page.dart';
@@ -41,6 +44,30 @@ class GeneratePage {
         {
           return MaterialPageRoute(
             builder: (context) => const SignUpPage(),
+          );
+        }
+
+      /*** passwordPage **/
+      case PageName.passwordPage:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const PasswordPage(),
+          );
+        }
+
+      /*** otpPage **/
+      case PageName.otpPage:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const OTPPage(),
+          );
+        }
+
+      /*** mainPage **/
+      case PageName.mainPage:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const MainPage(),
           );
         }
 
@@ -112,6 +139,9 @@ class GeneratePage {
 class PageName {
   static const String splashPage = "/";
   static const String loginPage = "/login";
+  static const String otpPage = "/otp";
+  static const String mainPage = "/main";
   static const String signUpPage = "/sign-up";
   static const String onboardingPage = "/onboarding";
+  static const String passwordPage = "/password";
 }

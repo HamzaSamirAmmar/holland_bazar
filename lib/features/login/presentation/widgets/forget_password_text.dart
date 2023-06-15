@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/util/generate_screen.dart';
+
 class ForgetPasswordText extends StatelessWidget {
   const ForgetPasswordText({super.key});
 
@@ -8,7 +10,7 @@ class ForgetPasswordText extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // TODO: navigate to forget password page
+        Navigator.pushNamed(context, PageName.passwordPage);
       },
       child: Text(
         "Forget your password?",

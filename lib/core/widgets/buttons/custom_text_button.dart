@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CustomTextButton extends StatelessWidget {
+  final bool filled;
   final String? title;
   final Widget? child;
   final Color? backgroundColor;
@@ -9,6 +10,7 @@ class CustomTextButton extends StatelessWidget {
 
   const CustomTextButton({
     super.key,
+    this.filled = true,
     this.title,
     this.child,
     this.backgroundColor,
@@ -22,11 +24,21 @@ class CustomTextButton extends StatelessWidget {
       width: 307.w,
       child: TextButton(
         style: TextButton.styleFrom(
-          backgroundColor:
-              backgroundColor ?? Theme.of(context).colorScheme.primary,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
+          backgroundColor: backgroundColor ??
+              (filled
+                  ? Theme.of(context).colorScheme.primary
+                  : Theme.of(context).colorScheme.background),
+          shape: filled
+              ? RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                )
+              : RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  side: BorderSide(
+                    color: Theme.of(context).colorScheme.primary,
+                    width: 1,
+                  ),
+                ),
         ),
         onPressed: onPressed,
         child: child ??
@@ -34,7 +46,9 @@ class CustomTextButton extends StatelessWidget {
               title!,
               style: TextStyle(
                 fontSize: 16.sp,
-                color: Colors.white,
+                color: filled
+                    ? Colors.white
+                    : Theme.of(context).textTheme.headline1!.color,
                 // fontWeight: FontWeight.w300
               ),
             ),

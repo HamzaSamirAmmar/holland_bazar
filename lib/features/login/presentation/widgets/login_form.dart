@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../../core/util/generate_screen.dart';
 import '../../../../core/widgets/Inputs/number_text_form_field.dart';
 import '../../../../core/widgets/Inputs/password_text_form_field.dart';
 import '../../../../core/widgets/buttons/custom_text_button.dart';
@@ -25,13 +26,17 @@ class _LoginFormState extends State<LoginForm> {
         children: [
           NumberTextFormField(numberController: _numberController),
           SizedBox(height: 28.h),
-          PasswordTextFormField(passwordController: _passwordController),
+          PasswordTextFormField(
+            passwordController: _passwordController,
+            lastField: true,
+          ),
           SizedBox(height: 28.h),
           CustomTextButton(
             title: "Login",
             onPressed: () {
               if (_formKey.currentState?.validate() ?? false) {
-                // post login process
+                // TODO: post login process
+                Navigator.pushReplacementNamed(context, PageName.mainPage);
               }
             },
           ),
