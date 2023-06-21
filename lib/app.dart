@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:holland_bazar/features/home/presentation/pages/home_page.dart';
 import 'package:holland_bazar/features/login/presentation/pages/login_page.dart';
 import 'package:holland_bazar/features/main/presentation/pages/main_page.dart';
 import 'package:holland_bazar/features/otp/presentation/pages/otp_page.dart';
@@ -60,7 +61,7 @@ class _AppState extends State<App> {
               child: child!,
             );
           },
-          home: const SplashPage(),
+          home: const MainPage(),
           locale: const Locale('en', ''),
           onGenerateRoute: GeneratePage.onGenerate,
           supportedLocales: const [Locale('en', '')],

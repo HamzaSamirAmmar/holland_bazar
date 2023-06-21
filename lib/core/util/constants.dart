@@ -4,11 +4,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Endpoints {
-  static const String baseUrl = "https://10.207.252.67:9998/api";
+  static const String baseUrl = "http://127.0.0.1:8000/api";
 
-  static const String login = "/account/login";
-
-  static const String getProducts = "/testProducts";
+  static const String login = "/auth/login";
 
   static String getProductDetails(int id) => "/testProducts/$id";
 }
@@ -19,12 +17,18 @@ class LocalStorageKeys {
 }
 
 class IconsAssets {
+  static const String add = "assets/icons/add.svg";
+  static const String star = "assets/icons/star.svg";
   static const String logo = "assets/icons/logo.svg";
   static const String home = "assets/icons/home.svg";
+  static const String cart = "assets/icons/cart.svg";
+  static const String ticket = "assets/icons/ticket.svg";
+  static const String search = "assets/icons/search.svg";
   static const String offers = "assets/icons/offers.svg";
+  static const String filter = "assets/icons/filter.svg";
+  static const String account = "assets/icons/account.svg";
   static const String favorite = "assets/icons/favorite.svg";
   static const String hollandGo = "assets/icons/holland_go.svg";
-  static const String account = "assets/icons/account.svg";
   static const String obscureStar = "assets/icons/obscure_star.svg";
   static const String googlePlusLogo = "assets/icons/google_plus_logo.svg";
 }
@@ -36,8 +40,20 @@ class ImagesAssets {
   static const String onboarding1 = "assets/images/onboarding_1.png";
   static const String onboarding2 = "assets/images/onboarding_2.png";
   static const String onboarding3 = "assets/images/onboarding_3.png";
+  static const String homeHeader = "assets/images/home_header.png";
   static const String registrationTypePageBackground =
       "assets/images/registration_type_page_background.png";
+
+  /// Dummy Data **/
+  static const String offer1 = "assets/images/offer_1.png";
+  static const String offer2 = "assets/images/offer_2.png";
+  static const String offer3 = "assets/images/offer_3.png";
+  static const String category1 = "assets/images/category_1.png";
+  static const String category2 = "assets/images/category_2.png";
+  static const String category3 = "assets/images/category_3.png";
+  static const String category4 = "assets/images/category_4.png";
+  static const String category5 = "assets/images/category_5.png";
+  static const String product_1 = "assets/images/product_1.png";
 }
 
 class RequestBody {

@@ -14,12 +14,23 @@ import 'package:get_it/get_it.dart' as _i1;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:shared_preferences/shared_preferences.dart' as _i5;
 
-import 'core/data/base_local_data_source.dart' as _i7;
-import 'core/data/base_remote_data_source.dart' as _i8;
-import 'core/data/base_repository.dart' as _i9;
+import 'core/data/base_local_data_source.dart' as _i11;
+import 'core/data/base_remote_data_source.dart' as _i12;
+import 'core/data/base_repository.dart' as _i13;
 import 'core/network/network_info.dart' as _i4;
+import 'features/splash/data/data_sources/local/splash_local_data_source.dart'
+    as _i7;
+import 'features/splash/data/data_sources/local/splash_local_data_source_imp.dart'
+    as _i8;
+import 'features/splash/data/data_sources/remote/splash_remote_data_source.dart'
+    as _i9;
+import 'features/splash/data/data_sources/remote/splash_remote_data_source_imp.dart'
+    as _i10;
+import 'features/splash/data/repositories/splash_repository_imp.dart' as _i15;
+import 'features/splash/domain/repositories/splash_repository.dart' as _i14;
+import 'features/splash/domain/use_cases/check_token_use_case.dart' as _i16;
 import 'features/splash/presentation/bloc/splash_bloc.dart' as _i6;
-import 'injection.dart' as _i10;
+import 'injection.dart' as _i17;
 
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
@@ -42,15 +53,28 @@ Future<_i1.GetIt> $initGetIt(
     preResolve: true,
   );
   gh.factory<_i6.SplashBloc>(() => _i6.SplashBloc());
-  gh.lazySingleton<_i7.BaseLocalDataSource>(() => _i7.BaseLocalDataSourceImp(
+  gh.lazySingleton<_i7.SplashLocalDataSource>(() =>
+      _i8.SplashLocalDataSourceImp(
+          sharedPreferences: gh<_i5.SharedPreferences>()));
+  gh.lazySingleton<_i9.SplashRemoteDataSource>(
+      () => _i10.SplashRemoteDataSourceImp(dio: gh<_i3.Dio>()));
+  gh.lazySingleton<_i11.BaseLocalDataSource>(() => _i11.BaseLocalDataSourceImp(
       sharedPreferences: gh<_i5.SharedPreferences>()));
-  gh.lazySingleton<_i8.BaseRemoteDataSource>(
-      () => _i8.BaseRemoteDataSourceImpl(dio: gh<_i3.Dio>()));
-  gh.lazySingleton<_i9.BaseRepository>(() => _i9.BaseRepositoryImpl(
-        baseLocalDataSource: gh<_i7.BaseLocalDataSource>(),
+  gh.lazySingleton<_i12.BaseRemoteDataSource>(
+      () => _i12.BaseRemoteDataSourceImpl(dio: gh<_i3.Dio>()));
+  gh.lazySingleton<_i13.BaseRepository>(() => _i13.BaseRepositoryImpl(
+        baseLocalDataSource: gh<_i11.BaseLocalDataSource>(),
         networkInfo: gh<_i4.NetworkInfo>(),
       ));
+  gh.lazySingleton<_i14.SplashRepository>(() => _i15.SplashRepositoryImp(
+        gh<_i9.SplashRemoteDataSource>(),
+        gh<_i7.SplashLocalDataSource>(),
+        baseLocalDataSource: gh<_i11.BaseLocalDataSource>(),
+        networkInfo: gh<_i4.NetworkInfo>(),
+      ));
+  gh.lazySingleton<_i16.CheckTokenUseCase>(
+      () => _i16.CheckTokenUseCase(gh<_i14.SplashRepository>()));
   return getIt;
 }
 
-class _$RegisterModule extends _i10.RegisterModule {}
+class _$RegisterModule extends _i17.RegisterModule {}

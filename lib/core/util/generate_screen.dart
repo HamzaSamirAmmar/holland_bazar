@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:holland_bazar/features/categories/presentation/pages/categories_page.dart';
 import 'package:holland_bazar/features/main/presentation/pages/main_page.dart';
 import 'package:holland_bazar/features/onboarding_page/presentation/pages/onboarding_page.dart';
 import 'package:holland_bazar/features/otp/presentation/pages/otp_page.dart';
 import 'package:holland_bazar/features/password/presentation/pages/password_page.dart';
+import 'package:holland_bazar/features/product_details/presentation/pages/product_details_page.dart';
 import 'package:holland_bazar/features/sign_up/presentation/pages/sign_up_page.dart';
 
 import '../../features/login/presentation/pages/login_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
+import '../entities/product.dart';
 
 class GeneratePage {
   static Route<dynamic> onGenerate(RouteSettings value) {
@@ -68,6 +71,24 @@ class GeneratePage {
         {
           return MaterialPageRoute(
             builder: (context) => const MainPage(),
+          );
+        }
+
+      /*** categoriesPage **/
+      case PageName.categoriesPage:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const CategoriesPage(),
+          );
+        }
+
+      /*** productDetailsPage **/
+      case PageName.productDetailsPage:
+        {
+          return MaterialPageRoute(
+            builder: (context) => ProductDetailsPage(
+              product: value.arguments as Product,
+            ),
           );
         }
 
@@ -144,4 +165,6 @@ class PageName {
   static const String signUpPage = "/sign-up";
   static const String onboardingPage = "/onboarding";
   static const String passwordPage = "/password";
+  static const String categoriesPage = "/categories";
+  static const String productDetailsPage = "/product-details";
 }
