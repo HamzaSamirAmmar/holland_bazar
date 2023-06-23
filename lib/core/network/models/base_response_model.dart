@@ -1,19 +1,21 @@
 library base_response_model;
 
 import 'package:flutter/material.dart';
+import 'package:holland_bazar/core/models/product_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import '../../error/exceptions.dart';
+import '../../models/authenticated_user_model.dart';
 
 part 'base_response_model.g.dart';
 
 @JsonSerializable()
 class BaseResponseModel<T> {
-  @JsonKey(name: 'success')
-  final bool? status;
+  @JsonKey(name: 'status')
+  final String? status;
 
   @JsonKey(name: 'message')
-  final String? message;
+  final dynamic message;
 
   @JsonKey(name: 'data', fromJson: _dataFromJson, toJson: _dataToJson)
   final T? data;
@@ -42,10 +44,14 @@ T? _dataFromJson<T>(Object? data) {
 
   /// else if the data not null so it should be a Map
   else if (data is Map<String, dynamic>) {
-    /***  Model ***/
-    // if (T.toString() == .className) {
-    //   return UserModel.fromJson(data) as T;
-    // }
+    /***  AuthenticatedUserModel ***/
+    if (T.toString() == AuthenticatedUserModel.className) {
+      return AuthenticatedUserModel.fromJson(data) as T;
+    }
+    /***  ProductModel ***/
+    if (T.toString() == ProductModel.className) {
+      return ProductModel.fromJson(data) as T;
+    }
   }
 
   debugPrint('_dataFromJson: parse error (BaseResponseModel)');

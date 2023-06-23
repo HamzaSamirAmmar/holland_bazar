@@ -7,11 +7,15 @@ class CustomTextButton extends StatelessWidget {
   final Widget? child;
   final Color? backgroundColor;
   final VoidCallback onPressed;
+  final double? width;
+  final double? height;
 
   const CustomTextButton({
     super.key,
     this.filled = true,
     this.title,
+    this.width,
+    this.height,
     this.child,
     this.backgroundColor,
     required this.onPressed,
@@ -20,8 +24,8 @@ class CustomTextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 56.h,
-      width: 307.w,
+      height: height ?? 57.h,
+      width: width ?? 307.w,
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: backgroundColor ??

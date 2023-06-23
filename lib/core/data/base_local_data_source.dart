@@ -1,10 +1,13 @@
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../models/user_model.dart';
 import '../util/constants.dart';
 
 abstract class BaseLocalDataSource {
   String get token;
+
+  Future<void> setToken(String token);
 
   Future<void> logout();
 }
@@ -24,5 +27,10 @@ class BaseLocalDataSourceImp implements BaseLocalDataSource {
   @override
   Future<void> logout() async {
     await sharedPreferences.clear();
+  }
+
+  @override
+  Future<void> setToken(String token) async {
+    await sharedPreferences.setString(LocalStorageKeys.apiToken, token);
   }
 }

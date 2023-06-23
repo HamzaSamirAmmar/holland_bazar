@@ -516,19 +516,19 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.horizontal,
               children: [
                 SizedBox(width: 12.w),
-
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 10.w),
                   child: ProductCard(
                     size: ProductCardSize.large,
                     product: Product(
-                      id: 0,
+                      id: 2,
                       title: "Tomatoes",
                       description: "400g",
                       price: 2.99,
                       rate: 4.4,
                       image:
-                          "https://192.168.1.110:8000/images/products/broccoli.png",
+                          "http://192.168.1.110:8000/images/products/carrots.png",
+                      isFavorite: true,
                     ),
                   ),
                 ),

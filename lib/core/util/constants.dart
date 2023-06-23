@@ -4,11 +4,17 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class Endpoints {
-  static const String baseUrl = "http://127.0.0.1:8000/api";
+  static const String baseUrl = "http://192.168.1.110:8000/api";
 
   static const String login = "/auth/login";
 
-  static String getProductDetails(int id) => "/testProducts/$id";
+  static const String addToCart = "/shoppingCart/addItem";
+
+  static const String addToFavorite = "/products/userFavorites/create";
+
+  static const String removeFromFavorite = "/products/userFavorites/delete";
+
+  static String getProductDetails(int id) => "/products/$id";
 }
 
 class LocalStorageKeys {
@@ -19,6 +25,8 @@ class LocalStorageKeys {
 class IconsAssets {
   static const String add = "assets/icons/add.svg";
   static const String star = "assets/icons/star.svg";
+  static const String starHalf = "assets/icons/star_half.svg";
+  static const String starFill = "assets/icons/star_fill.svg";
   static const String logo = "assets/icons/logo.svg";
   static const String home = "assets/icons/home.svg";
   static const String cart = "assets/icons/cart.svg";
@@ -58,16 +66,34 @@ class ImagesAssets {
 
 class RequestBody {
   /// ** Login ** ///
-  static Map<String, dynamic> login({
-    required String emailOrPhone,
+  static FormData login({
+    required String number,
     required String password,
   }) {
-    return {
-      "EmailOrPhone": emailOrPhone,
-      "Password": password,
-      "RememberMe": true,
-      "Guest": true,
-    };
+    return FormData.fromMap({
+      "phone": number,
+      "password": password,
+    });
+  }
+
+  /// ** AddToCart ** ///
+  static FormData addToCart({
+    required int productId,
+    required int quantity,
+  }) {
+    return FormData.fromMap({
+      "product_id": productId,
+      "quantity": quantity,
+    });
+  }
+
+  /// ** ChangeFavoriteStatus ** ///
+  static FormData changeFavoriteStatus({
+    required int productId,
+  }) {
+    return FormData.fromMap({
+      "product_id": productId,
+    });
   }
 
   static Map<String, dynamic> paginationParams({
@@ -104,14 +130,15 @@ class GetOptions {
 }
 
 class ErrorMessage {
-  static const String somethingWentWrong = "something_went_wrong";
-  static const String error400 = "error400";
-  static const String error401 = "error401";
-  static const String error403 = "error403";
-  static const String error404 = "error404";
-  static const String error412 = "error412";
-  static const String error500 = "error500";
-  static const String error503 = "error503";
+  static const String somethingWentWrong = "Something went wrong";
+  static String error400 = "The request that was sent is invalid";
+  static String error401 = "Failed to authenticate with the server";
+  static String error403 =
+      "You do not have permission to access the requested resource";
+  static String error404 = "The requested url was not found on the server";
+  static String error422 = "The entered data is incorrect";
+  static String error500 = "A generic error occurred on the server";
+  static String error503 = "The requested service is not available";
 }
 
 void message({
@@ -119,7 +146,6 @@ void message({
   required String message,
   required bool isError,
   required bloc,
-  bool statusChanged = false,
 }) {
   // For debug only
   debugPrint('Message is "$message"');

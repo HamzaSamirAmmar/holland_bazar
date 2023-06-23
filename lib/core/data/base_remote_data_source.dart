@@ -180,7 +180,7 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
       debugPrint("Switching result\n");
 
       /// 2.1: result is true
-      if (result.status ?? false) {
+      if (result.status == "success") {
         debugPrint("Result is true\n");
         return result.data as T;
       }

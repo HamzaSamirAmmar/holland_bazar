@@ -9,15 +9,15 @@ part of 'base_response_model.dart';
 BaseResponseModel<T> _$BaseResponseModelFromJson<T>(
         Map<String, dynamic> json) =>
     BaseResponseModel<T>(
-      status: json['success'] as bool?,
-      message: json['message'] as String?,
+      status: json['status'] as String?,
+      message: json['message'],
       data: _dataFromJson(json['data']),
     );
 
 Map<String, dynamic> _$BaseResponseModelToJson<T>(
         BaseResponseModel<T> instance) =>
     <String, dynamic>{
-      'success': instance.status,
+      'status': instance.status,
       'message': instance.message,
       'data': _dataToJson(instance.data),
     };

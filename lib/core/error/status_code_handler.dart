@@ -10,7 +10,7 @@ import 'exceptions.dart';
 Exception statusCodeHandler(Response response) {
   try {
     /// Get the message
-    final String? errorMessage = BaseResponseModel<void>.fromJson(
+    final dynamic errorMessage = BaseResponseModel<void>.fromJson(
       json.decode(
         response.data,
       ),
@@ -56,13 +56,20 @@ Exception statusCodeHandler(Response response) {
       );
     }
 
-    /// StatusCode: 412
-    else if (response.statusCode == 412) {
+    /// StatusCode: 422
+    else if (response.statusCode == 422) {
       debugPrint('StatusCodeHandler: the code is ${response.statusCode}\n');
       debugPrint('StatusCodeHandler: throwing UnprocessableEntityException\n');
-
+      // debugPrint(errorMessage);
+      // String errorMessages = "";
+      // (json.decode(errorMessage) as Map<String, List<String>>).forEach(
+      //   (field, errors) {
+      //     errors.map((error) => errorMessages += "$error\n");
+      //   },
+      // );
+      //
       return UnprocessableEntityException(
-        error: errorMessage ?? ErrorMessage.error412,
+        error: errorMessage ?? ErrorMessage.error422,
       );
     }
 
