@@ -13,11 +13,11 @@ import '../data_sources/remote/password_remote_data_source.dart';
 class PasswordRepositoryImp extends BaseRepositoryImpl
     implements PasswordRepository {
   final PasswordLocalDataSource _local;
-  final PasswordRemoteDataSource _http;
+  final PasswordRemoteDataSource _remote;
 
   PasswordRepositoryImp(
     this._local,
-    this._http, {
+    this._remote, {
     required BaseLocalDataSource baseLocalDataSource,
     required NetworkInfo networkInfo,
   }) : super(
@@ -30,8 +30,10 @@ class PasswordRepositoryImp extends BaseRepositoryImpl
     required String password,
   }) async =>
       await requestWithToken(
-        (_) => _http.resetPassword(
+        (token) => _remote.resetPassword(
+          token: token,
           password: password,
+          phone: baseLocalDataSource.phone,
         ),
       );
 }

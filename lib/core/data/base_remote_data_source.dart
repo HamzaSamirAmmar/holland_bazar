@@ -182,6 +182,14 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
       /// 2.1: result is true
       if (result.status == "success") {
         debugPrint("Result is true\n");
+        if (result.data == null) {
+          if (T.toString() == "void") {
+            return result.data as T;
+          } else {
+            throw NullDataException();
+          }
+        }
+
         return result.data as T;
       }
 

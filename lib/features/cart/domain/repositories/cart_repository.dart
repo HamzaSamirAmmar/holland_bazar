@@ -7,6 +7,10 @@ import '../entities/cart.dart';
 abstract class CartRepository extends BaseRepository {
   Future<Either<Failure, Cart?>> getCart();
 
+  Future<Either<Failure, Cart>> applyPromoCode({
+    required int code,
+  });
+
   Future<Either<Failure, void>> addToCart({
     required int id,
     required int quantity,

@@ -13,11 +13,11 @@ import '../data_sources/remote/sign_up_remote_data_source.dart';
 class SignUpRepositoryImp extends BaseRepositoryImpl
     implements SignUpRepository {
   final SignUpLocalDataSource _local;
-  final SignUpRemoteDataSource _http;
+  final SignUpRemoteDataSource _remote;
 
   SignUpRepositoryImp(
     this._local,
-    this._http, {
+    this._remote, {
     required BaseLocalDataSource baseLocalDataSource,
     required NetworkInfo networkInfo,
   }) : super(
@@ -31,11 +31,16 @@ class SignUpRepositoryImp extends BaseRepositoryImpl
     required String name,
     required String address,
   }) async =>
-      await requestWithToken(
-            (_) => _http.signUp(
-          number: number,
-          name: name,
-          address: address,
-        ),
+      await requestWithToken<void>(
+        (_) async {
+          final user = await _remote.signUp(
+            number: number,
+            name: name,
+            address: address,
+          );
+          await _local.setToken(user.token);
+          await _local.setPhone(user.user.phone);
+          return;
+        },
       );
 }

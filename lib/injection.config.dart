@@ -28,10 +28,11 @@ import 'features/cart/data/data_sources/remote/cart_remote_data_source_imp.dart'
     as _i32;
 import 'features/cart/data/repositories/cart_repository_imp.dart' as _i34;
 import 'features/cart/domain/repositories/cart_repository.dart' as _i33;
-import 'features/cart/domain/use_cases/add_to_cart_use_case.dart' as _i70;
+import 'features/cart/domain/use_cases/add_to_cart_use_case.dart' as _i69;
+import 'features/cart/domain/use_cases/apply_promo_code_use_case.dart' as _i71;
 import 'features/cart/domain/use_cases/get_cart_use_case.dart' as _i35;
 import 'features/cart/domain/use_cases/remove_from_cart_use_case.dart' as _i61;
-import 'features/cart/presentation/bloc/cart_bloc.dart' as _i71;
+import 'features/cart/presentation/bloc/cart_bloc.dart' as _i72;
 import 'features/home/data/data_sources/local/home_local_data_source.dart'
     as _i36;
 import 'features/home/data/data_sources/local/home_local_data_source_imp.dart'
@@ -42,10 +43,10 @@ import 'features/home/data/data_sources/remote/home_remote_data_source_imp.dart'
     as _i5;
 import 'features/home/data/repositories/home_repository_imp.dart' as _i39;
 import 'features/home/domain/repositories/home_repository.dart' as _i38;
-import 'features/home/domain/use_cases/get_categories_use_case.dart' as _i75;
+import 'features/home/domain/use_cases/get_categories_use_case.dart' as _i76;
 import 'features/home/domain/use_cases/get_frequently_ordered_products_use_case.dart'
-    as _i76;
-import 'features/home/presentation/bloc/home_bloc.dart' as _i79;
+    as _i77;
+import 'features/home/presentation/bloc/home_bloc.dart' as _i80;
 import 'features/login/data/data_sources/local/login_local_data_source.dart'
     as _i40;
 import 'features/login/data/data_sources/local/login_local_data_source_imp.dart'
@@ -57,7 +58,7 @@ import 'features/login/data/data_sources/remote/login_remote_data_source_imp.dar
 import 'features/login/data/repositories/login_repository_imp.dart' as _i43;
 import 'features/login/domain/repositories/login_repository.dart' as _i42;
 import 'features/login/domain/use_cases/login_use_case.dart' as _i44;
-import 'features/login/presentation/bloc/login_bloc.dart' as _i80;
+import 'features/login/presentation/bloc/login_bloc.dart' as _i81;
 import 'features/onboarding_page/data/data_sources/local/onboarding_local_data_source.dart'
     as _i49;
 import 'features/onboarding_page/data/data_sources/local/onboarding_local_data_source_imp.dart'
@@ -71,9 +72,9 @@ import 'features/onboarding_page/data/repositories/onboarding_repository_imp.dar
 import 'features/onboarding_page/domain/repositories/onboarding_repository.dart'
     as _i51;
 import 'features/onboarding_page/domain/use_cases/change_onboarding_status_use_case.dart'
-    as _i73;
+    as _i74;
 import 'features/onboarding_page/presentation/bloc/onboarding_bloc.dart'
-    as _i82;
+    as _i83;
 import 'features/otp/data/data_sources/local/otp_local_data_source.dart'
     as _i45;
 import 'features/otp/data/data_sources/local/otp_local_data_source_imp.dart'
@@ -85,7 +86,7 @@ import 'features/otp/data/data_sources/remote/otp_remote_data_source.dart'
 import 'features/otp/data/repositories/otp_repository_imp.dart' as _i48;
 import 'features/otp/domain/repositories/otp_repository.dart' as _i47;
 import 'features/otp/domain/use_cases/send_code_use_case.dart' as _i63;
-import 'features/otp/presentation/bloc/otp_bloc.dart' as _i81;
+import 'features/otp/presentation/bloc/otp_bloc.dart' as _i82;
 import 'features/password/data/data_sources/local/password_local_data_source.dart'
     as _i53;
 import 'features/password/data/data_sources/local/password_local_data_source_imp.dart'
@@ -99,7 +100,7 @@ import 'features/password/data/repositories/password_repository_imp.dart'
 import 'features/password/domain/repositories/password_repository.dart' as _i55;
 import 'features/password/domain/use_cases/reset_password_use_case.dart'
     as _i62;
-import 'features/password/presentation/bloc/password_bloc.dart' as _i83;
+import 'features/password/presentation/bloc/password_bloc.dart' as _i84;
 import 'features/product_details/data/data_sources/local/product_details_local_data_source.dart'
     as _i57;
 import 'features/product_details/data/data_sources/local/product_details_local_data_source_imp.dart'
@@ -113,13 +114,13 @@ import 'features/product_details/data/repositories/product_details_repository_im
 import 'features/product_details/domain/repositories/product_details_repository.dart'
     as _i59;
 import 'features/product_details/domain/use_cases/add_to_cart_use_case.dart'
-    as _i69;
+    as _i70;
 import 'features/product_details/domain/use_cases/change_product_favorite_status_use_case.dart'
-    as _i72;
+    as _i73;
 import 'features/product_details/domain/use_cases/get_product_use_case.dart'
-    as _i77;
+    as _i78;
 import 'features/product_details/presentation/bloc/product_details_bloc.dart'
-    as _i84;
+    as _i85;
 import 'features/sign_up/data/data_sources/local/sign_up_local_data_source.dart'
     as _i18;
 import 'features/sign_up/data/data_sources/local/sign_up_local_data_source_imp.dart'
@@ -131,7 +132,7 @@ import 'features/sign_up/data/data_sources/remote/sign_up_remote_data_source.dar
 import 'features/sign_up/data/repositories/sign_up_repository_imp.dart' as _i65;
 import 'features/sign_up/domain/repositories/sign_up_repository.dart' as _i64;
 import 'features/sign_up/domain/use_cases/sign_up_use_case.dart' as _i66;
-import 'features/sign_up/presentation/bloc/sign_up_bloc.dart' as _i85;
+import 'features/sign_up/presentation/bloc/sign_up_bloc.dart' as _i86;
 import 'features/splash/data/data_sources/local/splash_local_data_source.dart'
     as _i22;
 import 'features/splash/data/data_sources/local/splash_local_data_source_imp.dart'
@@ -142,11 +143,11 @@ import 'features/splash/data/data_sources/remote/splash_remote_data_source_imp.d
     as _i25;
 import 'features/splash/data/repositories/splash_repository_imp.dart' as _i68;
 import 'features/splash/domain/repositories/splash_repository.dart' as _i67;
-import 'features/splash/domain/use_cases/check_token_use_case.dart' as _i74;
+import 'features/splash/domain/use_cases/check_token_use_case.dart' as _i75;
 import 'features/splash/domain/use_cases/get_show_on_boarding_status_use_case.dart'
-    as _i78;
-import 'features/splash/presentation/bloc/splash_bloc.dart' as _i86;
-import 'injection.dart' as _i87;
+    as _i79;
+import 'features/splash/presentation/bloc/splash_bloc.dart' as _i87;
+import 'injection.dart' as _i88;
 
 // ignore_for_file: unnecessary_lambdas
 // ignore_for_file: lines_longer_than_80_chars
@@ -287,49 +288,52 @@ Future<_i1.GetIt> $initGetIt(
         networkInfo: gh<_i8.NetworkInfo>(),
       ));
   gh.lazySingleton<_i69.AddToCartUseCase>(
-      () => _i69.AddToCartUseCase(gh<_i59.ProductDetailsRepository>()));
+      () => _i69.AddToCartUseCase(gh<_i33.CartRepository>()));
   gh.lazySingleton<_i70.AddToCartUseCase>(
-      () => _i70.AddToCartUseCase(gh<_i33.CartRepository>()));
-  gh.lazySingleton<_i71.CartBloc>(() => _i71.CartBloc(
+      () => _i70.AddToCartUseCase(gh<_i59.ProductDetailsRepository>()));
+  gh.lazySingleton<_i71.ApplyPromoCodeUseCase>(
+      () => _i71.ApplyPromoCodeUseCase(gh<_i33.CartRepository>()));
+  gh.lazySingleton<_i72.CartBloc>(() => _i72.CartBloc(
         gh<_i35.GetCartUseCase>(),
-        gh<_i70.AddToCartUseCase>(),
-        gh<_i61.RemoveFromCartUseCase>(),
-      ));
-  gh.lazySingleton<_i72.ChangeFavoriteStatusUseCase>(() =>
-      _i72.ChangeFavoriteStatusUseCase(gh<_i59.ProductDetailsRepository>()));
-  gh.lazySingleton<_i73.ChangeOnboardingStatusUseCase>(() =>
-      _i73.ChangeOnboardingStatusUseCase(gh<_i51.OnboardingRepository>()));
-  gh.lazySingleton<_i74.CheckTokenUseCase>(
-      () => _i74.CheckTokenUseCase(gh<_i67.SplashRepository>()));
-  gh.lazySingleton<_i75.GetCategoriesUseCase>(
-      () => _i75.GetCategoriesUseCase(gh<_i38.HomeRepository>()));
-  gh.lazySingleton<_i76.GetFrequentlyOrderedProductsUseCase>(() =>
-      _i76.GetFrequentlyOrderedProductsUseCase(gh<_i38.HomeRepository>()));
-  gh.lazySingleton<_i77.GetProductUseCase>(
-      () => _i77.GetProductUseCase(gh<_i59.ProductDetailsRepository>()));
-  gh.lazySingleton<_i78.GetShowOnBoardingStatusUseCase>(
-      () => _i78.GetShowOnBoardingStatusUseCase(gh<_i67.SplashRepository>()));
-  gh.factory<_i79.HomeBloc>(() => _i79.HomeBloc(
-        gh<_i75.GetCategoriesUseCase>(),
-        gh<_i76.GetFrequentlyOrderedProductsUseCase>(),
-      ));
-  gh.factory<_i80.LoginBloc>(() => _i80.LoginBloc(gh<_i44.LoginUseCase>()));
-  gh.factory<_i81.OTPBloc>(() => _i81.OTPBloc(gh<_i63.SendCodeUseCase>()));
-  gh.factory<_i82.OnboardingBloc>(
-      () => _i82.OnboardingBloc(gh<_i73.ChangeOnboardingStatusUseCase>()));
-  gh.factory<_i83.PasswordBloc>(
-      () => _i83.PasswordBloc(gh<_i62.ResetPasswordUseCase>()));
-  gh.lazySingleton<_i84.ProductDetailsBloc>(() => _i84.ProductDetailsBloc(
         gh<_i69.AddToCartUseCase>(),
-        gh<_i72.ChangeFavoriteStatusUseCase>(),
-        gh<_i77.GetProductUseCase>(),
+        gh<_i61.RemoveFromCartUseCase>(),
+        gh<_i71.ApplyPromoCodeUseCase>(),
       ));
-  gh.factory<_i85.SignUpBloc>(() => _i85.SignUpBloc(gh<_i66.SignUpUseCase>()));
-  gh.factory<_i86.SplashBloc>(() => _i86.SplashBloc(
-        gh<_i74.CheckTokenUseCase>(),
-        gh<_i78.GetShowOnBoardingStatusUseCase>(),
+  gh.lazySingleton<_i73.ChangeFavoriteStatusUseCase>(() =>
+      _i73.ChangeFavoriteStatusUseCase(gh<_i59.ProductDetailsRepository>()));
+  gh.lazySingleton<_i74.ChangeOnboardingStatusUseCase>(() =>
+      _i74.ChangeOnboardingStatusUseCase(gh<_i51.OnboardingRepository>()));
+  gh.lazySingleton<_i75.CheckTokenUseCase>(
+      () => _i75.CheckTokenUseCase(gh<_i67.SplashRepository>()));
+  gh.lazySingleton<_i76.GetCategoriesUseCase>(
+      () => _i76.GetCategoriesUseCase(gh<_i38.HomeRepository>()));
+  gh.lazySingleton<_i77.GetFrequentlyOrderedProductsUseCase>(() =>
+      _i77.GetFrequentlyOrderedProductsUseCase(gh<_i38.HomeRepository>()));
+  gh.lazySingleton<_i78.GetProductUseCase>(
+      () => _i78.GetProductUseCase(gh<_i59.ProductDetailsRepository>()));
+  gh.lazySingleton<_i79.GetShowOnBoardingStatusUseCase>(
+      () => _i79.GetShowOnBoardingStatusUseCase(gh<_i67.SplashRepository>()));
+  gh.factory<_i80.HomeBloc>(() => _i80.HomeBloc(
+        gh<_i76.GetCategoriesUseCase>(),
+        gh<_i77.GetFrequentlyOrderedProductsUseCase>(),
+      ));
+  gh.factory<_i81.LoginBloc>(() => _i81.LoginBloc(gh<_i44.LoginUseCase>()));
+  gh.factory<_i82.OTPBloc>(() => _i82.OTPBloc(gh<_i63.SendCodeUseCase>()));
+  gh.factory<_i83.OnboardingBloc>(
+      () => _i83.OnboardingBloc(gh<_i74.ChangeOnboardingStatusUseCase>()));
+  gh.factory<_i84.PasswordBloc>(
+      () => _i84.PasswordBloc(gh<_i62.ResetPasswordUseCase>()));
+  gh.lazySingleton<_i85.ProductDetailsBloc>(() => _i85.ProductDetailsBloc(
+        gh<_i70.AddToCartUseCase>(),
+        gh<_i73.ChangeFavoriteStatusUseCase>(),
+        gh<_i78.GetProductUseCase>(),
+      ));
+  gh.factory<_i86.SignUpBloc>(() => _i86.SignUpBloc(gh<_i66.SignUpUseCase>()));
+  gh.factory<_i87.SplashBloc>(() => _i87.SplashBloc(
+        gh<_i75.CheckTokenUseCase>(),
+        gh<_i79.GetShowOnBoardingStatusUseCase>(),
       ));
   return getIt;
 }
 
-class _$RegisterModule extends _i87.RegisterModule {}
+class _$RegisterModule extends _i88.RegisterModule {}

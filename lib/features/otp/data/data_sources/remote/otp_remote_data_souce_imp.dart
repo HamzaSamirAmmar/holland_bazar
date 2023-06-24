@@ -14,11 +14,15 @@ class OTPRemoteDataSourceImp extends BaseRemoteDataSourceImpl
   @override
   Future<void> sendCode({
     required String number,
+    required String phone,
+    required String token,
   }) async =>
       await performPostRequest<void>(
+        token: token,
         endpoint: Endpoints.sendCode,
         data: RequestBody.sendCode(
           number: number,
+          phone: phone,
         ),
       );
 }

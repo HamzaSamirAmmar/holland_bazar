@@ -31,7 +31,11 @@ class _OTPPageState extends State<OTPPage> {
       bloc: _bloc,
       listener: (context, state) {
         if (state.isCodeVerified) {
-          // Navigator.pushAndRemoveUntil;
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            PageName.mainPage,
+            (route) => false,
+          );
         }
       },
       builder: (context, state) {
@@ -58,7 +62,9 @@ class _OTPPageState extends State<OTPPage> {
                     CustomTextButton(
                       title: "Next",
                       onPressed: () {
-                        _formKey.currentState?.validate();
+                        if(_formKey.currentState?.validate() ?? false){
+                          _bloc.addSendSignUpDateEvent(number: _otpController.text);
+                        };
                       },
                     ),
                     SizedBox(height: 32.h),

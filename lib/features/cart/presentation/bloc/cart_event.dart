@@ -42,6 +42,20 @@ abstract class RemoveFromCartEvent extends CartEvent
   }
 }
 
+abstract class ApplyPromoCodeEvent extends CartEvent
+    implements Built<ApplyPromoCodeEvent, ApplyPromoCodeEventBuilder> {
+  ApplyPromoCodeEvent._();
+
+  int get code;
+
+  factory ApplyPromoCodeEvent(
+      [Function(ApplyPromoCodeEventBuilder b) updates]) = _$ApplyPromoCodeEvent;
+
+  factory ApplyPromoCodeEvent.initial() {
+    return ApplyPromoCodeEvent((b) => b);
+  }
+}
+
 abstract class AddToCartEvent extends CartEvent
     implements Built<AddToCartEvent, AddToCartEventBuilder> {
   AddToCartEvent._();

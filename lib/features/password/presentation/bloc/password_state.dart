@@ -7,8 +7,9 @@ part 'password_state.g.dart';
 abstract class PasswordState
     with BaseState
     implements Built<PasswordState, PasswordStateBuilder> {
-
   PasswordState._();
+
+  bool get success;
 
   factory PasswordState([Function(PasswordStateBuilder b) updates]) =
       _$PasswordState;
@@ -18,7 +19,8 @@ abstract class PasswordState
       (b) => b
         ..isLoading = false
         ..message = ''
-        ..error = false,
+        ..error = false
+        ..success = false,
     );
   }
 

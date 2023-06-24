@@ -51,4 +51,15 @@ class CartRepositoryImp extends BaseRepositoryImpl implements CartRepository {
           token: token,
         ),
       );
+
+  @override
+  Future<Either<Failure, Cart>> applyPromoCode({
+    required int code,
+  }) async =>
+      await requestWithToken<Cart>(
+        (token) => _remote.applyPromoCode(
+          token: token,
+          code: code,
+        ),
+      );
 }

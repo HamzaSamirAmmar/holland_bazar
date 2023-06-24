@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:holland_bazar/core/usecases/usecase.dart';
+import 'package:holland_bazar/features/cart/domain/use_cases/apply_promo_code_use_case.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../domain/use_cases/add_to_cart_use_case.dart';
@@ -12,10 +13,42 @@ import 'cart_state.dart';
 class CartBloc extends Bloc<CartEvent, CartState> {
   final GetCartUseCase _getCartUseCase;
   final AddToCartUseCase _addToCartUseCase;
+  final ApplyPromoCodeUseCase _applyPromoCodeUseCase;
   final RemoveFromCartUseCase _removeFromCartUseCase;
 
   void clearMessage() {
     add(ClearMessage());
+  }
+
+  void addGetCartEvent() {
+    add(GetCartEvent());
+  }
+
+  void addAddToCartEvent({
+    required int id,
+    required int quantity,
+  }) {
+    add(AddToCartEvent(
+      (b) => b
+        ..id = id
+        ..quantity = quantity,
+    ));
+  }
+
+  void addRemoveFromCartEvent({
+    required int id,
+  }) {
+    add(RemoveFromCartEvent(
+      (b) => b..id = id,
+    ));
+  }
+
+  void addApplyPromoCodeEvent({
+    required int code,
+  }) {
+    add(ApplyPromoCodeEvent(
+      (b) => b..code = code,
+    ));
   }
 
   @factoryMethod
@@ -23,12 +56,40 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     this._getCartUseCase,
     this._addToCartUseCase,
     this._removeFromCartUseCase,
+    this._applyPromoCodeUseCase,
   ) : super(CartState.initial()) {
     on<CartEvent>(
       (event, emit) async {
         /*** ClearMessage ***/
         if (event is ClearMessage) {
           emit(CartState.clearMessage(currentState: state));
+        }
+
+        /*** ApplyPromoCodeEvent ***/
+        if (event is ApplyPromoCodeEvent) {
+          emit(state.rebuild((b) => b..isLoading = true));
+
+          final result = await _applyPromoCodeUseCase(
+            ParamsApplyPromoCodeUseCase(
+              code: event.code,
+            ),
+          );
+
+          result.fold(
+            (failure) => emit(
+              CartState.failure(
+                message: failure.error,
+                currentState: state,
+              ),
+            ),
+            (cart) => emit(
+              state.rebuild(
+                (b) => b
+                  ..isLoading = false
+                  ..cart = cart,
+              ),
+            ),
+          );
         }
 
         /*** GetCartEvent ***/
@@ -56,7 +117,17 @@ class CartBloc extends Bloc<CartEvent, CartState> {
 
         /*** RemoveFromCartEvent ***/
         if (event is RemoveFromCartEvent) {
-          emit(state.rebuild((b) => b..isLoading = true));
+          final item = state.cart!.items.firstWhere(
+            (element) => element.id == event.id,
+          );
+
+          emit(
+            state.rebuild(
+              (b) => b
+                ..isLoading = true
+                ..cart!.items.removeWhere((element) => element.id == event.id),
+            ),
+          );
 
           final result = await _removeFromCartUseCase(
             ParamsRemoveFromCartUseCaseUseCase(
@@ -65,19 +136,23 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           );
 
           result.fold(
-            (failure) => emit(
-              CartState.failure(
-                message: failure.error,
-                currentState: state,
-              ),
-            ),
-            (success) => emit(
+              (failure) => emit(
+                    state.rebuild(
+                      (b) => b
+                        ..cart!.items.add(item)
+                        ..message = failure.error
+                        ..isLoading = false
+                        ..error = true,
+                    ),
+                  ), (success) {
+            addGetCartEvent();
+            emit(
               CartState.success(
                 message: "Product removed Successfully",
                 currentState: state,
               ),
-            ),
-          );
+            );
+          });
         }
 
         /*** AddToCartEvent ***/

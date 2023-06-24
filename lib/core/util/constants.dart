@@ -10,13 +10,15 @@ class Endpoints {
 
   static const String login = "/auth/login";
 
-  static const String signUp = "";
+  static const String signUp = "/auth/register";
 
-  static const String sendCode = "";
+  static const String sendCode = "/auth/checkOtp";
 
-  static const String resetPassword = "";
+  static const String resetPassword = "/auth/resetPassword";
 
-  static const String getCart = "/shoppingCart/addItem";
+  static const String getCart = "/shoppingCart";
+
+  static const String applyCode = "/shoppingCart/applyCode";
 
   static const String addToCart = "/shoppingCart/addItem";
 
@@ -37,11 +39,14 @@ class Endpoints {
 class LocalStorageKeys {
   static const apiToken = 'api_token';
   static const username = 'username';
+  static const phone = 'phone';
   static const onBoardingStatus = 'on_boarding_status';
 }
 
 class IconsAssets {
   static const String add = "assets/icons/add.svg";
+  static const String discount = "assets/icons/discount.svg";
+  static const String trash = "assets/icons/trash.svg";
   static const String star = "assets/icons/star.svg";
   static const String starHalf = "assets/icons/star_half.svg";
   static const String starFill = "assets/icons/star_fill.svg";
@@ -53,6 +58,7 @@ class IconsAssets {
   static const String offers = "assets/icons/offers.svg";
   static const String filter = "assets/icons/filter.svg";
   static const String account = "assets/icons/account.svg";
+  static const String arrowBack = "assets/icons/arrow_back.svg";
   static const String favorite = "assets/icons/favorite.svg";
   static const String hollandGo = "assets/icons/holland_go.svg";
   static const String obscureStar = "assets/icons/obscure_star.svg";
@@ -115,6 +121,15 @@ class RequestBody {
     });
   }
 
+  /// ** applyCode ** ///
+  static FormData applyCode({
+    required int code,
+  }) {
+    return FormData.fromMap({
+      "code": code,
+    });
+  }
+
   /// ** ChangeFavoriteStatus ** ///
   static FormData changeFavoriteStatus({
     required int productId,
@@ -125,34 +140,41 @@ class RequestBody {
   }
 
   /// ** SignUp ** ///
-  static Map<String, dynamic> signUp({
+  static FormData signUp({
     required String number,
     required String name,
     required String address,
   }) {
-    return {
-      "number": number,
+    return FormData.fromMap({
+      "phone": number,
       "name": name,
       "address": address,
-    };
+      "password": "12345678",
+      // !! cause there is no page or field for enter the password on register
+    });
   }
 
   /// ** SendCode ** ///
-  static Map<String, dynamic> sendCode({
+  static FormData sendCode({
     required String number,
+    required String phone,
   }) {
-    return {
-      "number": number,
-    };
+    return FormData.fromMap({
+      "code": number,
+      "phone": phone,
+    });
   }
 
   /// ** ResetPassword ** ///
-  static Map<String, dynamic> resetPassword({
+  static FormData resetPassword({
+    required String phone,
     required String password,
   }) {
-    return {
+    return FormData.fromMap({
       "password": password,
-    };
+      "phone": phone,
+      "confirm_password": password,
+    });
   }
 }
 

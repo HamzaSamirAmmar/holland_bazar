@@ -205,6 +205,92 @@ class RemoveFromCartEventBuilder
   }
 }
 
+class _$ApplyPromoCodeEvent extends ApplyPromoCodeEvent {
+  @override
+  final int code;
+
+  factory _$ApplyPromoCodeEvent(
+          [void Function(ApplyPromoCodeEventBuilder)? updates]) =>
+      (new ApplyPromoCodeEventBuilder()..update(updates))._build();
+
+  _$ApplyPromoCodeEvent._({required this.code}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(code, r'ApplyPromoCodeEvent', 'code');
+  }
+
+  @override
+  ApplyPromoCodeEvent rebuild(
+          void Function(ApplyPromoCodeEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  ApplyPromoCodeEventBuilder toBuilder() =>
+      new ApplyPromoCodeEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is ApplyPromoCodeEvent && code == other.code;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, code.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'ApplyPromoCodeEvent')
+          ..add('code', code))
+        .toString();
+  }
+}
+
+class ApplyPromoCodeEventBuilder
+    implements Builder<ApplyPromoCodeEvent, ApplyPromoCodeEventBuilder> {
+  _$ApplyPromoCodeEvent? _$v;
+
+  int? _code;
+  int? get code => _$this._code;
+  set code(int? code) => _$this._code = code;
+
+  ApplyPromoCodeEventBuilder();
+
+  ApplyPromoCodeEventBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _code = $v.code;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(ApplyPromoCodeEvent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$ApplyPromoCodeEvent;
+  }
+
+  @override
+  void update(void Function(ApplyPromoCodeEventBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  ApplyPromoCodeEvent build() => _build();
+
+  _$ApplyPromoCodeEvent _build() {
+    final _$result = _$v ??
+        new _$ApplyPromoCodeEvent._(
+            code: BuiltValueNullFieldError.checkNotNull(
+                code, r'ApplyPromoCodeEvent', 'code'));
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$AddToCartEvent extends AddToCartEvent {
   @override
   final int id;

@@ -8,6 +8,8 @@ part of 'password_state.dart';
 
 class _$PasswordState extends PasswordState {
   @override
+  final bool success;
+  @override
   final bool isLoading;
   @override
   final bool error;
@@ -18,8 +20,12 @@ class _$PasswordState extends PasswordState {
       (new PasswordStateBuilder()..update(updates))._build();
 
   _$PasswordState._(
-      {required this.isLoading, required this.error, required this.message})
+      {required this.success,
+      required this.isLoading,
+      required this.error,
+      required this.message})
       : super._() {
+    BuiltValueNullFieldError.checkNotNull(success, r'PasswordState', 'success');
     BuiltValueNullFieldError.checkNotNull(
         isLoading, r'PasswordState', 'isLoading');
     BuiltValueNullFieldError.checkNotNull(error, r'PasswordState', 'error');
@@ -37,6 +43,7 @@ class _$PasswordState extends PasswordState {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is PasswordState &&
+        success == other.success &&
         isLoading == other.isLoading &&
         error == other.error &&
         message == other.message;
@@ -45,6 +52,7 @@ class _$PasswordState extends PasswordState {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, success.hashCode);
     _$hash = $jc(_$hash, isLoading.hashCode);
     _$hash = $jc(_$hash, error.hashCode);
     _$hash = $jc(_$hash, message.hashCode);
@@ -55,6 +63,7 @@ class _$PasswordState extends PasswordState {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'PasswordState')
+          ..add('success', success)
           ..add('isLoading', isLoading)
           ..add('error', error)
           ..add('message', message))
@@ -65,6 +74,10 @@ class _$PasswordState extends PasswordState {
 class PasswordStateBuilder
     implements Builder<PasswordState, PasswordStateBuilder> {
   _$PasswordState? _$v;
+
+  bool? _success;
+  bool? get success => _$this._success;
+  set success(bool? success) => _$this._success = success;
 
   bool? _isLoading;
   bool? get isLoading => _$this._isLoading;
@@ -83,6 +96,7 @@ class PasswordStateBuilder
   PasswordStateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _success = $v.success;
       _isLoading = $v.isLoading;
       _error = $v.error;
       _message = $v.message;
@@ -108,6 +122,8 @@ class PasswordStateBuilder
   _$PasswordState _build() {
     final _$result = _$v ??
         new _$PasswordState._(
+            success: BuiltValueNullFieldError.checkNotNull(
+                success, r'PasswordState', 'success'),
             isLoading: BuiltValueNullFieldError.checkNotNull(
                 isLoading, r'PasswordState', 'isLoading'),
             error: BuiltValueNullFieldError.checkNotNull(

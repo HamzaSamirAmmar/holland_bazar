@@ -56,7 +56,7 @@ class _AppState extends State<App> {
               child: child!,
             );
           },
-          home: const CartPage(),
+          home: const SplashPage(),
           locale: const Locale('en', ''),
           onGenerateRoute: GeneratePage.onGenerate,
           supportedLocales: const [Locale('en', '')],

@@ -57,14 +57,14 @@ class ProductTile extends StatelessWidget {
                 SizedBox(height: 15.h),
                 RatingBarIndicator(
                   itemCount: 5,
-                  rating: product.rate,
+                  rating: product.rate!,
                   itemBuilder: (_, index) {
                     double rating = index + 0.5;
-                    if (product.rate > rating) {
+                    if (product.rate! > rating) {
                       return SvgPicture.asset(
                         IconsAssets.starFill,
                       );
-                    } else if (product.rate > rating - 0.5) {
+                    } else if (product.rate! > rating - 0.5) {
                       return SvgPicture.asset(
                         IconsAssets.starHalf,
                       );
@@ -94,7 +94,7 @@ class ProductTile extends StatelessWidget {
             onFavoritePressed();
           },
           child: Icon(
-            product.isFavorite
+            product.isFavorite!
                 ? Icons.favorite_rounded
                 : Icons.favorite_outline_rounded,
             color: const Color(0xFFFE5A01),

@@ -6,6 +6,11 @@ abstract class CartRemoteDataSource extends BaseRemoteDataSource {
     required String token,
   });
 
+  Future<CartModel> applyPromoCode({
+    required String token,
+    required int code,
+  });
+
   Future<void> removeFromCart({
     required int id,
     required String token,

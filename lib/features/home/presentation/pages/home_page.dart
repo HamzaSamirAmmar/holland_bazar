@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:holland_bazar/core/util/generate_screen.dart';
 import 'package:holland_bazar/features/home/presentation/widgets/frequently_ordered_products.dart';
 
 import '../../../../core/entities/product.dart';
@@ -96,37 +97,42 @@ class _HomePageState extends State<HomePage> {
                         ),
                       ),
                       SizedBox(width: 7.w),
-                      Container(
-                        height: 46.h,
-                        width: 51.w,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Stack(
-                          alignment: Alignment.center,
-                          children: [
-                            SvgPicture.asset(
-                              IconsAssets.cart,
-                              color: Theme.of(context).colorScheme.tertiary,
-                            ),
-                            Positioned(
-                              top: 5.h,
-                              right: 7.w,
-                              child: CircleAvatar(
-                                backgroundColor:
-                                    Theme.of(context).colorScheme.primary,
-                                radius: 8.w,
-                                child: Text(
-                                  "4",
-                                  style: TextStyle(
-                                    fontSize: 9.sp,
-                                    color: Colors.white,
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).pushNamed(PageName.cartPage);
+                        },
+                        child: Container(
+                          height: 46.h,
+                          width: 51.w,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                IconsAssets.cart,
+                                color: Theme.of(context).colorScheme.tertiary,
+                              ),
+                              Positioned(
+                                top: 5.h,
+                                right: 7.w,
+                                child: CircleAvatar(
+                                  backgroundColor:
+                                      Theme.of(context).colorScheme.primary,
+                                  radius: 8.w,
+                                  child: Text(
+                                    "4",
+                                    style: TextStyle(
+                                      fontSize: 9.sp,
+                                      color: Colors.white,
+                                    ),
                                   ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       )
                     ],

@@ -1,8 +1,8 @@
-import '../../domain/use_cases/reset_password_use_case.dart';
-import 'password.dart';
-
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
+
+import '../../domain/use_cases/reset_password_use_case.dart';
+import 'password.dart';
 
 @injectable
 class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
@@ -47,7 +47,10 @@ class PasswordBloc extends Bloc<PasswordEvent, PasswordState> {
           ),
           (success) => emit(
             state.rebuild(
-              (b) => b..isLoading = false,
+              (b) => b
+                ..message = "Password reset successfully"
+                ..isLoading = false
+                ..success = true,
             ),
           ),
         );

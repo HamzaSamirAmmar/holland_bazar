@@ -13,12 +13,16 @@ class PasswordRemoteDataSourceImp extends BaseRemoteDataSourceImpl
 
   @override
   Future<void> resetPassword({
+    required String token,
+    required String phone,
     required String password,
   }) async =>
       await performPostRequest<void>(
         endpoint: Endpoints.resetPassword,
+        token: token,
         data: RequestBody.resetPassword(
           password: password,
+          phone: phone,
         ),
       );
 }

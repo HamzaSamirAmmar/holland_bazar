@@ -11,9 +11,9 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) => ProductModel(
       title: json['title'] as String,
       description: json['description'] as String,
       price: (json['price'] as num).toDouble(),
-      rate: (json['rate'] as num).toDouble(),
+      rate: (json['rate'] as num?)?.toDouble(),
       image: json['image'] as String,
-      isFavorite: json['is_favorite'] as bool,
+      isFavorite: json['is_favorite'] as bool?,
     );
 
 Map<String, dynamic> _$ProductModelToJson(ProductModel instance) =>

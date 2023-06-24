@@ -43,4 +43,15 @@ class CartRemoteDataSourceImp extends BaseRemoteDataSourceImpl
         endpoint: Endpoints.deleteFromCart(id),
         token: token,
       );
+
+  @override
+  Future<CartModel> applyPromoCode({
+    required String token,
+    required int code,
+  }) async =>
+      await performPostRequest<CartModel>(
+        token: token,
+        endpoint: Endpoints.applyCode,
+        data: RequestBody.applyCode(code: code),
+      );
 }

@@ -98,7 +98,7 @@ class _ProductDetailsContainerState extends State<ProductDetailsContainer> {
                             product: state.product!,
                             onFavoritePressed: () {
                               _bloc.addChangeProductFavoriteStatusEvent(
-                                isFavorite: state.product!.isFavorite,
+                                isFavorite: state.product!.isFavorite!,
                                 productId: state.product!.id,
                               );
                             }),

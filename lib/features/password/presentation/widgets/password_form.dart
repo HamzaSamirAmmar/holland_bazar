@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:holland_bazar/features/password/presentation/bloc/password.dart';
 
 import '../../../../core/widgets/Inputs/password_text_form_field.dart';
 import '../../../../core/widgets/buttons/custom_text_button.dart';
 
 class PasswordForm extends StatefulWidget {
-  const PasswordForm({super.key});
+  final PasswordBloc bloc;
+
+  const PasswordForm({
+    super.key,
+    required this.bloc,
+  });
 
   @override
   State<PasswordForm> createState() => _PasswordFormState();
@@ -46,7 +52,9 @@ class _PasswordFormState extends State<PasswordForm> {
             title: "Next",
             onPressed: () {
               if (_formKey.currentState?.validate() ?? false) {
-                // TODO: send request;
+                widget.bloc.addResetPasswordEvent(
+                  password: _passwordController.text,
+                );
               }
             },
           ),

@@ -11,7 +11,7 @@ abstract class ResetPasswordEvent extends PasswordEvent
   String get password;
 
   factory ResetPasswordEvent([Function(ResetPasswordEventBuilder b) updates]) =
-  _$ResetPasswordEvent;
+      _$ResetPasswordEvent;
 
   factory ResetPasswordEvent.initial() {
     return ResetPasswordEvent((b) => b);
@@ -23,7 +23,7 @@ abstract class ClearMessage extends PasswordEvent
   ClearMessage._();
 
   factory ClearMessage([Function(ClearMessageBuilder b) updates]) =
-  _$ClearMessage;
+      _$ClearMessage;
 
   factory ClearMessage.initial() {
     return ClearMessage((b) => b);

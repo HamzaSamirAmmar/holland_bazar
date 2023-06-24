@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:holland_bazar/core/widgets/loader.dart';
 
 import '../../../../core/util/constants.dart';
 import '../../../../core/util/generate_screen.dart';
@@ -38,31 +39,35 @@ class _SignUpPageState extends State<SignUpPage> {
           isError: state.error,
           message: state.message,
         );
-        // ToDo: show loader if state is loading
         return GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
           child: Scaffold(
-            body: SingleChildScrollView(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 34.w,
-                ),
-                child: Column(
-                  children: [
-                    SizedBox(height: 60.h),
-                    const SignUpTitle(),
-                    SizedBox(height: 12.h),
-                    const SignUpSubtitle(),
-                    SizedBox(height: 112.h),
-                    SignUpForm(
-                      bloc: _bloc,
+            body: Stack(
+              children: [
+                SingleChildScrollView(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 34.w,
                     ),
-                    SizedBox(height: 24.h),
-                    const LoginText(),
-                    SizedBox(height: 42.h),
-                  ],
+                    child: Column(
+                      children: [
+                        SizedBox(height: 60.h),
+                        const SignUpTitle(),
+                        SizedBox(height: 12.h),
+                        const SignUpSubtitle(),
+                        SizedBox(height: 112.h),
+                        SignUpForm(
+                          bloc: _bloc,
+                        ),
+                        SizedBox(height: 24.h),
+                        const LoginText(),
+                        SizedBox(height: 42.h),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+                if (state.isLoading) const Loader(),
+              ],
             ),
           ),
         );

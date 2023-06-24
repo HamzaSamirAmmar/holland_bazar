@@ -7,7 +7,11 @@ import '../util/constants.dart';
 abstract class BaseLocalDataSource {
   String get token;
 
+  String get phone;
+
   Future<void> setToken(String token);
+
+  Future<void> setPhone(String phone);
 
   Future<void> logout();
 }
@@ -32,5 +36,13 @@ class BaseLocalDataSourceImp implements BaseLocalDataSource {
   @override
   Future<void> setToken(String token) async {
     await sharedPreferences.setString(LocalStorageKeys.apiToken, token);
+  }
+
+  @override
+  String get phone => sharedPreferences.getString(LocalStorageKeys.phone) ?? "";
+
+  @override
+  Future<void> setPhone(String phone) async {
+    await sharedPreferences.setString(LocalStorageKeys.phone, phone);
   }
 }

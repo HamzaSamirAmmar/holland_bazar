@@ -6,11 +6,11 @@ class Product extends Equatable {
   final String title;
   final String description;
   final double price;
-  final double rate;
+  final double? rate;
   final String image;
 
   @JsonKey(name: "is_favorite")
-  final bool isFavorite;
+  final bool? isFavorite;
 
   const Product({
     required this.id,
@@ -29,7 +29,7 @@ class Product extends Equatable {
         price: product.price,
         rate: product.rate,
         image: product.image,
-        isFavorite: !product.isFavorite,
+        isFavorite: !product.isFavorite!,
       );
 
   @override
