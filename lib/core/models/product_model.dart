@@ -7,6 +7,8 @@ part 'product_model.g.dart';
 @JsonSerializable()
 class ProductModel extends Product {
   static const String className = "ProductModel";
+  static const String paginationName = "PaginateResponseModel<ProductModel>";
+
 
   const ProductModel({
     required super.id,

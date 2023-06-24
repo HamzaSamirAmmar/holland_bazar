@@ -2,10 +2,13 @@ library base_response_model;
 
 import 'package:flutter/material.dart';
 import 'package:holland_bazar/core/models/product_model.dart';
+import 'package:holland_bazar/core/network/models/paginate_response_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 
+import '../../../features/cart/data/models/cart_model.dart';
 import '../../error/exceptions.dart';
 import '../../models/authenticated_user_model.dart';
+import '../../models/category_model.dart';
 
 part 'base_response_model.g.dart';
 
@@ -48,9 +51,25 @@ T? _dataFromJson<T>(Object? data) {
     if (T.toString() == AuthenticatedUserModel.className) {
       return AuthenticatedUserModel.fromJson(data) as T;
     }
+
     /***  ProductModel ***/
     if (T.toString() == ProductModel.className) {
       return ProductModel.fromJson(data) as T;
+    }
+
+    /***  CartModel ***/
+    if (T.toString() == CartModel.className) {
+      return CartModel.fromJson(data) as T;
+    }
+
+    /***  CategoryModel ***/
+    if (T.toString() == CategoryModel.paginationName) {
+      return PaginateResponseModel<CategoryModel>.fromJson(data) as T;
+    }
+
+    /***  ProductModel ***/
+    if (T.toString() == ProductModel.paginationName) {
+      return PaginateResponseModel<ProductModel>.fromJson(data) as T;
     }
   }
 

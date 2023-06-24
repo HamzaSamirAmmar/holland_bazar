@@ -1,25 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:holland_bazar/core/util/constants.dart';
-import 'package:holland_bazar/features/onboarding_page/presentation/pages/registration_type_page.dart';
-import 'package:holland_bazar/features/onboarding_page/presentation/widgets/onboarding_indicator.dart';
-import 'package:holland_bazar/features/onboarding_page/presentation/pages/onboarding_sub_page_base.dart';
-import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import '../../../../core/util/constants.dart';
+import '../../../../injection.dart';
+import '../bloc/onboarding_bloc.dart';
+import '../widgets/onboarding_indicator.dart';
+import 'onboarding_sub_page_base.dart';
+import 'registration_type_page.dart';
 
 class OnboardingPage extends StatefulWidget {
-  const OnboardingPage({super.key});
+  final int page;
+
+  const OnboardingPage({
+    super.key,
+    this.page = 0,
+  });
 
   @override
   State<OnboardingPage> createState() => _OnboardingPageState();
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-  final _controller = PageController();
+  late final PageController _controller;
 
   late final List<Widget> _subPages;
 
+  final _bloc = sl<OnboardingBloc>();
+
   @override
   void initState() {
+    _controller = PageController(initialPage: widget.page);
+    _controller.addListener(
+      () {
+        if (_controller.page == 3) {
+          _bloc.addChangeOnboardingStatusEvent();
+        }
+      },
+    );
     _subPages = [
       OnboardingSubPageBase(
         controller: _controller,
@@ -61,9 +78,10 @@ class _OnboardingPageState extends State<OnboardingPage> {
           ),
           PageView(
             controller: _controller,
+            physics: const NeverScrollableScrollPhysics(),
             children: [
               ..._subPages,
-              RegistrationTypePage(),
+              const RegistrationTypePage(),
             ],
           ),
         ],

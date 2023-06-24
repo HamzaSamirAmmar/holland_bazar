@@ -6,6 +6,127 @@ part of 'splash_event.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+class _$CheckTokenEvent extends CheckTokenEvent {
+  factory _$CheckTokenEvent([void Function(CheckTokenEventBuilder)? updates]) =>
+      (new CheckTokenEventBuilder()..update(updates))._build();
+
+  _$CheckTokenEvent._() : super._();
+
+  @override
+  CheckTokenEvent rebuild(void Function(CheckTokenEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  CheckTokenEventBuilder toBuilder() =>
+      new CheckTokenEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is CheckTokenEvent;
+  }
+
+  @override
+  int get hashCode {
+    return 343734092;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'CheckTokenEvent').toString();
+  }
+}
+
+class CheckTokenEventBuilder
+    implements Builder<CheckTokenEvent, CheckTokenEventBuilder> {
+  _$CheckTokenEvent? _$v;
+
+  CheckTokenEventBuilder();
+
+  @override
+  void replace(CheckTokenEvent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$CheckTokenEvent;
+  }
+
+  @override
+  void update(void Function(CheckTokenEventBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  CheckTokenEvent build() => _build();
+
+  _$CheckTokenEvent _build() {
+    final _$result = _$v ?? new _$CheckTokenEvent._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GetShowOnBoardingStatusEvent extends GetShowOnBoardingStatusEvent {
+  factory _$GetShowOnBoardingStatusEvent(
+          [void Function(GetShowOnBoardingStatusEventBuilder)? updates]) =>
+      (new GetShowOnBoardingStatusEventBuilder()..update(updates))._build();
+
+  _$GetShowOnBoardingStatusEvent._() : super._();
+
+  @override
+  GetShowOnBoardingStatusEvent rebuild(
+          void Function(GetShowOnBoardingStatusEventBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GetShowOnBoardingStatusEventBuilder toBuilder() =>
+      new GetShowOnBoardingStatusEventBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GetShowOnBoardingStatusEvent;
+  }
+
+  @override
+  int get hashCode {
+    return 675758608;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GetShowOnBoardingStatusEvent')
+        .toString();
+  }
+}
+
+class GetShowOnBoardingStatusEventBuilder
+    implements
+        Builder<GetShowOnBoardingStatusEvent,
+            GetShowOnBoardingStatusEventBuilder> {
+  _$GetShowOnBoardingStatusEvent? _$v;
+
+  GetShowOnBoardingStatusEventBuilder();
+
+  @override
+  void replace(GetShowOnBoardingStatusEvent other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GetShowOnBoardingStatusEvent;
+  }
+
+  @override
+  void update(void Function(GetShowOnBoardingStatusEventBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GetShowOnBoardingStatusEvent build() => _build();
+
+  _$GetShowOnBoardingStatusEvent _build() {
+    final _$result = _$v ?? new _$GetShowOnBoardingStatusEvent._();
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$ClearMessage extends ClearMessage {
   factory _$ClearMessage([void Function(ClearMessageBuilder)? updates]) =>
       (new ClearMessageBuilder()..update(updates))._build();

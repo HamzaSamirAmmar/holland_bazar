@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:holland_bazar/features/sign_up/presentation/widgets/login_text.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../core/util/constants.dart';
+import '../../../../core/util/generate_screen.dart';
+import '../../../../injection.dart';
+import '../bloc/sign_up.dart';
+import '../widgets/login_text.dart';
 import '../widgets/sign_up_form.dart';
 import '../widgets/sign_up_subtitle.dart';
 import '../widgets/sign_up_title.dart';
@@ -14,32 +19,54 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  final _bloc = sl<SignUpBloc>();
+
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
-      child: Scaffold(
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 34.w,
-            ),
-            child: Column(
-              children: [
-                SizedBox(height: 60.h),
-                const SignUpTitle(),
-                SizedBox(height: 12.h),
-                const SignUpSubtitle(),
-                SizedBox(height: 112.h),
-                const SignUpForm(),
-                SizedBox(height: 24.h),
-                const LoginText(),
-                SizedBox(height: 42.h),
-              ],
+    return BlocConsumer<SignUpBloc, SignUpState>(
+      bloc: _bloc,
+      listener: (context, state) {
+        if (state.pushOTPPage) {
+          Navigator.pushNamed(context, PageName.otpPage);
+          _bloc.addResetPushOTPValueEvent();
+        }
+      },
+      builder: (context, state) {
+        message(
+          bloc: _bloc,
+          context: context,
+          isError: state.error,
+          message: state.message,
+        );
+        // ToDo: show loader if state is loading
+        return GestureDetector(
+          onTap: () => FocusScope.of(context).unfocus(),
+          child: Scaffold(
+            body: SingleChildScrollView(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 34.w,
+                ),
+                child: Column(
+                  children: [
+                    SizedBox(height: 60.h),
+                    const SignUpTitle(),
+                    SizedBox(height: 12.h),
+                    const SignUpSubtitle(),
+                    SizedBox(height: 112.h),
+                    SignUpForm(
+                      bloc: _bloc,
+                    ),
+                    SizedBox(height: 24.h),
+                    const LoginText(),
+                    SizedBox(height: 42.h),
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

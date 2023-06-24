@@ -5,4 +5,6 @@ import "../../../../core/error/failures.dart";
 
 abstract class SplashRepository extends BaseRepository {
   Future<Either<Failure, bool>> checkToken();
+
+  Future<Either<Failure, bool>> getShowOnBoardingStatus();
 }

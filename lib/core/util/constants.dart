@@ -3,23 +3,41 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../usecases/usecase.dart';
+
 class Endpoints {
   static const String baseUrl = "http://192.168.1.110:8000/api";
 
   static const String login = "/auth/login";
 
+  static const String signUp = "";
+
+  static const String sendCode = "";
+
+  static const String resetPassword = "";
+
+  static const String getCart = "/shoppingCart/addItem";
+
   static const String addToCart = "/shoppingCart/addItem";
+
+  static const String categories = "/categories";
+
+  static const String frequentlyOrdered =
+      "/products"; //"/products/frequentlyItems"; //FIXME: because the list is empty
 
   static const String addToFavorite = "/products/userFavorites/create";
 
   static const String removeFromFavorite = "/products/userFavorites/delete";
 
   static String getProductDetails(int id) => "/products/$id";
+
+  static String deleteFromCart(int id) => "/shoppingCart/deleteItem/$id";
 }
 
 class LocalStorageKeys {
   static const apiToken = 'api_token';
   static const username = 'username';
+  static const onBoardingStatus = 'on_boarding_status';
 }
 
 class IconsAssets {
@@ -51,17 +69,27 @@ class ImagesAssets {
   static const String homeHeader = "assets/images/home_header.png";
   static const String registrationTypePageBackground =
       "assets/images/registration_type_page_background.png";
+  static const String pastOrder = "assets/images/past_order.png";
+  static const String freeDelivery = "assets/images/free_delivery.png";
 
   /// Dummy Data **/
   static const String offer1 = "assets/images/offer_1.png";
   static const String offer2 = "assets/images/offer_2.png";
   static const String offer3 = "assets/images/offer_3.png";
-  static const String category1 = "assets/images/category_1.png";
-  static const String category2 = "assets/images/category_2.png";
-  static const String category3 = "assets/images/category_3.png";
-  static const String category4 = "assets/images/category_4.png";
-  static const String category5 = "assets/images/category_5.png";
+
   static const String product_1 = "assets/images/product_1.png";
+}
+
+class QueryParams {
+  static Map<String, dynamic> paginationParams({
+    required PaginationParams params,
+  }) {
+    return {
+      "page": params.page,
+      "per_page": params.perPage,
+      "search_word": params.searchWord,
+    };
+  }
 }
 
 class RequestBody {
@@ -96,13 +124,34 @@ class RequestBody {
     });
   }
 
-  static Map<String, dynamic> paginationParams({
-    required int page,
-    int size = 10,
+  /// ** SignUp ** ///
+  static Map<String, dynamic> signUp({
+    required String number,
+    required String name,
+    required String address,
   }) {
     return {
-      "Limit": size,
-      "Page": page,
+      "number": number,
+      "name": name,
+      "address": address,
+    };
+  }
+
+  /// ** SendCode ** ///
+  static Map<String, dynamic> sendCode({
+    required String number,
+  }) {
+    return {
+      "number": number,
+    };
+  }
+
+  /// ** ResetPassword ** ///
+  static Map<String, dynamic> resetPassword({
+    required String password,
+  }) {
+    return {
+      "password": password,
     };
   }
 }

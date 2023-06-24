@@ -9,13 +9,13 @@ part 'base_list_response_model.g.dart';
 
 @JsonSerializable()
 class BaseListResponseModel<T> {
-  @JsonKey(name: 'Succeeded')
-  final bool? status;
+  @JsonKey(name: 'status')
+  final String? status;
 
-  @JsonKey(name: 'Messages')
-  final List? message;
+  @JsonKey(name: 'message')
+  final dynamic message;
 
-  @JsonKey(name: 'Data')
+  @JsonKey(name: 'data')
   @_Converter()
   final List<T>? data;
 

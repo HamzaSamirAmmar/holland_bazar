@@ -8,6 +8,10 @@ part of 'splash_state.dart';
 
 class _$SplashState extends SplashState {
   @override
+  final bool? showOnBoardingStatus;
+  @override
+  final bool? isUserAuthenticated;
+  @override
   final bool isLoading;
   @override
   final bool error;
@@ -18,7 +22,11 @@ class _$SplashState extends SplashState {
       (new SplashStateBuilder()..update(updates))._build();
 
   _$SplashState._(
-      {required this.isLoading, required this.error, required this.message})
+      {this.showOnBoardingStatus,
+      this.isUserAuthenticated,
+      required this.isLoading,
+      required this.error,
+      required this.message})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         isLoading, r'SplashState', 'isLoading');
@@ -37,6 +45,8 @@ class _$SplashState extends SplashState {
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other is SplashState &&
+        showOnBoardingStatus == other.showOnBoardingStatus &&
+        isUserAuthenticated == other.isUserAuthenticated &&
         isLoading == other.isLoading &&
         error == other.error &&
         message == other.message;
@@ -45,6 +55,8 @@ class _$SplashState extends SplashState {
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, showOnBoardingStatus.hashCode);
+    _$hash = $jc(_$hash, isUserAuthenticated.hashCode);
     _$hash = $jc(_$hash, isLoading.hashCode);
     _$hash = $jc(_$hash, error.hashCode);
     _$hash = $jc(_$hash, message.hashCode);
@@ -55,6 +67,8 @@ class _$SplashState extends SplashState {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'SplashState')
+          ..add('showOnBoardingStatus', showOnBoardingStatus)
+          ..add('isUserAuthenticated', isUserAuthenticated)
           ..add('isLoading', isLoading)
           ..add('error', error)
           ..add('message', message))
@@ -64,6 +78,16 @@ class _$SplashState extends SplashState {
 
 class SplashStateBuilder implements Builder<SplashState, SplashStateBuilder> {
   _$SplashState? _$v;
+
+  bool? _showOnBoardingStatus;
+  bool? get showOnBoardingStatus => _$this._showOnBoardingStatus;
+  set showOnBoardingStatus(bool? showOnBoardingStatus) =>
+      _$this._showOnBoardingStatus = showOnBoardingStatus;
+
+  bool? _isUserAuthenticated;
+  bool? get isUserAuthenticated => _$this._isUserAuthenticated;
+  set isUserAuthenticated(bool? isUserAuthenticated) =>
+      _$this._isUserAuthenticated = isUserAuthenticated;
 
   bool? _isLoading;
   bool? get isLoading => _$this._isLoading;
@@ -82,6 +106,8 @@ class SplashStateBuilder implements Builder<SplashState, SplashStateBuilder> {
   SplashStateBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _showOnBoardingStatus = $v.showOnBoardingStatus;
+      _isUserAuthenticated = $v.isUserAuthenticated;
       _isLoading = $v.isLoading;
       _error = $v.error;
       _message = $v.message;
@@ -107,6 +133,8 @@ class SplashStateBuilder implements Builder<SplashState, SplashStateBuilder> {
   _$SplashState _build() {
     final _$result = _$v ??
         new _$SplashState._(
+            showOnBoardingStatus: showOnBoardingStatus,
+            isUserAuthenticated: isUserAuthenticated,
             isLoading: BuiltValueNullFieldError.checkNotNull(
                 isLoading, r'SplashState', 'isLoading'),
             error: BuiltValueNullFieldError.checkNotNull(

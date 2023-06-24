@@ -14,23 +14,15 @@ class NoParams extends Equatable {
 
 class PaginationParams extends Equatable {
   final int page;
+  final int perPage;
+  final String searchWord;
 
-  const PaginationParams({required this.page});
-
-  @override
-  List<Object?> get props => [page];
-}
-
-class PaginationWithGsmParams extends Equatable {
-  final int page;
-
-  final String gsm;
-
-  const PaginationWithGsmParams({
+  const PaginationParams({
     required this.page,
-    required this.gsm,
+    this.perPage = 8,
+    this.searchWord = "",
   });
 
   @override
-  List<Object?> get props => [page, gsm];
+  List<Object?> get props => [page, perPage];
 }

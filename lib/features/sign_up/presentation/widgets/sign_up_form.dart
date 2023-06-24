@@ -5,9 +5,15 @@ import '../../../../core/util/generate_screen.dart';
 import '../../../../core/widgets/Inputs/custom_text_form_field.dart';
 import '../../../../core/widgets/Inputs/number_text_form_field.dart';
 import '../../../../core/widgets/buttons/custom_text_button.dart';
+import '../bloc/sign_up.dart';
 
 class SignUpForm extends StatefulWidget {
-  const SignUpForm({super.key});
+  final SignUpBloc bloc;
+
+  const SignUpForm({
+    super.key,
+    required this.bloc,
+  });
 
   @override
   State<SignUpForm> createState() => _SignUpFormState();
@@ -56,8 +62,11 @@ class _SignUpFormState extends State<SignUpForm> {
             title: "Sign Up",
             onPressed: () {
               if (_formKey.currentState?.validate() ?? false) {
-                // TODO: post sign up process
-                Navigator.pushNamed(context, PageName.otpPage);
+                widget.bloc.addSendSignUpDateEvent(
+                  number: _numberController.text,
+                  name: _nameController.text,
+                  address: _addressController.text,
+                );
               }
             },
           ),

@@ -3,18 +3,21 @@ import 'package:json_annotation/json_annotation.dart';
 
 class User extends Equatable {
   final int id;
+
   final String name;
+
   final String phone;
-  final double email;
+
+  final String? email;
 
   @JsonKey(name: "address_text")
-  final double addressText;
+  final String? addressText;
 
   @JsonKey(name: "address_latitude")
-  final String addressLatitude;
+  final double? addressLatitude;
 
   @JsonKey(name: "address_longitude")
-  final String addressLongitude;
+  final double? addressLongitude;
 
   const User({
     required this.id,

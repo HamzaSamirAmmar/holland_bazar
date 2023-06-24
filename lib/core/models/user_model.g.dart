@@ -8,10 +8,10 @@ part of 'user_model.dart';
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) => UserModel(
       id: json['id'] as int,
-      addressLatitude: json['address_latitude'] as String,
-      addressLongitude: json['address_longitude'] as String,
-      addressText: (json['address_text'] as num).toDouble(),
-      email: (json['email'] as num).toDouble(),
+      addressLatitude: (json['address_latitude'] as num?)?.toDouble(),
+      addressLongitude: (json['address_longitude'] as num?)?.toDouble(),
+      addressText: json['address_text'] as String?,
+      email: json['email'] as String?,
       name: json['name'] as String,
       phone: json['phone'] as String,
     );

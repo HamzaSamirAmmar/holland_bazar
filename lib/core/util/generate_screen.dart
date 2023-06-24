@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:holland_bazar/features/categories/presentation/pages/categories_page.dart';
-import 'package:holland_bazar/features/main/presentation/pages/main_page.dart';
-import 'package:holland_bazar/features/onboarding_page/presentation/pages/onboarding_page.dart';
-import 'package:holland_bazar/features/otp/presentation/pages/otp_page.dart';
-import 'package:holland_bazar/features/password/presentation/pages/password_page.dart';
-import 'package:holland_bazar/features/product_details/presentation/pages/product_details_page.dart';
-import 'package:holland_bazar/features/sign_up/presentation/pages/sign_up_page.dart';
 
+import '../../features/cart/presentation/pages/cart_page.dart';
+import '../../features/categories/presentation/pages/categories_page.dart';
 import '../../features/login/presentation/pages/login_page.dart';
+import '../../features/main/presentation/pages/main_page.dart';
+import '../../features/onboarding_page/presentation/pages/onboarding_page.dart';
+import '../../features/otp/presentation/pages/otp_page.dart';
+import '../../features/password/presentation/pages/password_page.dart';
+import '../../features/product_details/presentation/pages/product_details_page.dart';
+import '../../features/sign_up/presentation/pages/sign_up_page.dart';
 import '../../features/splash/presentation/pages/splash_page.dart';
 import '../entities/product.dart';
 
@@ -30,7 +31,9 @@ class GeneratePage {
       case PageName.onboardingPage:
         {
           return MaterialPageRoute(
-            builder: (context) => const OnboardingPage(),
+            builder: (context) => OnboardingPage(
+              page: value.arguments as int,
+            ),
           );
         }
 
@@ -89,6 +92,14 @@ class GeneratePage {
             builder: (context) => ProductDetailsPage(
               product: value.arguments as Product,
             ),
+          );
+        }
+
+      /**  productDetailsPage **/
+      case PageName.cartPage:
+        {
+          return MaterialPageRoute(
+            builder: (context) => CartPage(),
           );
         }
 
@@ -167,4 +178,5 @@ class PageName {
   static const String passwordPage = "/password";
   static const String categoriesPage = "/categories";
   static const String productDetailsPage = "/product-details";
+  static const String cartPage = "/cart";
 }

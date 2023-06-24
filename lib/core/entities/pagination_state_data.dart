@@ -29,7 +29,7 @@ abstract class PaginationStateData<T>
           ..isLoading = false
           ..isFinished = false
           ..currentPage = 1
-          ..total = 0,
+          ..total = 1,
       );
 
   bool paginationStateCanGetMoreData() {

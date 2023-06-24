@@ -2,6 +2,8 @@ library paginate_response_model;
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:holland_bazar/core/models/category_model.dart';
+import 'package:holland_bazar/core/models/product_model.dart';
 import 'package:json_annotation/json_annotation.dart';
 import '../../entities/paginate_list.dart';
 
@@ -9,16 +11,16 @@ part 'paginate_response_model.g.dart';
 
 @JsonSerializable()
 class PaginateResponseModel<T extends Equatable> extends PaginateList {
-  @JsonKey(name: 'success')
-  final bool? status;
+  @JsonKey(name: 'status')
+  final String? status;
 
   @JsonKey(name: 'message')
-  final String? message;
+  final dynamic message;
 
-  @JsonKey(name: 'TotalCount')
+  @JsonKey(name: 'total')
   final int count;
 
-  @JsonKey(name: 'TotalPages')
+  @JsonKey(name: 'last_page')
   final int numPages;
 
   @_Converter()
@@ -48,10 +50,14 @@ class _Converter<T> implements JsonConverter<T, Object?> {
     debugPrint('T is ${T.toString()}');
 
     if (json is Map<String, dynamic>) {
-      // /*** Model ***/
-      // if (T.toString() == .className) {
-      //   return .fromJson(json) as T;
-      // }
+      /*** CategoryModel ***/
+      if (T.toString() == CategoryModel.className) {
+        return CategoryModel.fromJson(json) as T;
+      }
+      /*** ProductModel ***/
+      if (T.toString() == ProductModel.className) {
+        return ProductModel.fromJson(json) as T;
+      }
     }
 
     throw Exception('parse error');

@@ -3,12 +3,12 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
+import 'package:holland_bazar/core/network/models/base_list_response_model.dart';
 import 'package:injectable/injectable.dart';
 
 import '../error/exceptions.dart';
 import '../error/status_code_handler.dart';
 import '../network/models/base_response_model.dart';
-import '../network/models/paginate_response_model.dart';
 import '../util/constants.dart';
 
 abstract class BaseRemoteDataSource {
@@ -255,7 +255,7 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
 
       /// 1. decode the response and get a base response model (status, message and data)
       debugPrint("Decoding response...\n");
-      final result = PaginateResponseModel<T>.fromJson(
+      final result = BaseListResponseModel<T>.fromJson(
         json.decode(response.data),
       );
 
@@ -263,9 +263,9 @@ class BaseRemoteDataSourceImpl extends BaseRemoteDataSource {
       debugPrint("Switching result\n");
 
       /// 2.1: result is true
-      if (result.status ?? false) {
+      if (result.status == 'success') {
         debugPrint("Result is true\n");
-        return result.data;
+        return result.data!;
       }
 
       /// 2.2: result is false

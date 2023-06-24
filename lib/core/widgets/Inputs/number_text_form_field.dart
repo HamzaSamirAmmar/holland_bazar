@@ -22,8 +22,8 @@ class NumberTextFormField extends StatelessWidget {
         if (int.tryParse(number) == null) {
           return "Please enter a valid mobile number";
         }
-        if (!number.startsWith('071')) {
-          return "Mobile number must start with 071";
+        if (!number.startsWith('07')) {
+          return "Mobile number must start with 07";
         }
         if (number.length != 10) {
           return "Mobile number must be 10 digits";

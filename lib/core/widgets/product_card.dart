@@ -162,7 +162,7 @@ class ProductCard extends StatelessWidget {
                                 ),
                                 SizedBox(width: 6.w),
                                 SvgPicture.asset(
-                                  IconsAssets.star,
+                                  IconsAssets.starFill,
                                   height: size == ProductCardSize.large
                                       ? 14.h
                                       : 9.h,

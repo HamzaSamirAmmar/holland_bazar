@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:holland_bazar/core/util/constants.dart';
+import 'package:holland_bazar/core/util/generate_screen.dart';
+import 'package:holland_bazar/core/widgets/loader.dart';
 import 'package:holland_bazar/features/login/presentation/bloc/login_bloc.dart';
+import 'package:holland_bazar/injection.dart';
 
-import '../../../../core/util/constants.dart';
-import '../../../../core/widgets/loader.dart';
-import '../../../../injection.dart';
 import '../bloc/login_state.dart';
 import '../widgets/forget_password_text.dart';
 import '../widgets/google_login_button.dart';
@@ -26,51 +27,63 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<LoginBloc, LoginState>(
-      bloc: _bloc,
-      builder: (context, state) {
-        message(
-          context: context,
-          message: state.message,
-          isError: state.error,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: BlocListener<LoginBloc, LoginState>(
+        bloc: _bloc,
+        listener: (context, state) {
+          if (state.success) {
+            WidgetsBinding.instance.addPostFrameCallback(
+              (_) {
+                Navigator.of(context).pushReplacementNamed(PageName.mainPage);
+              },
+            );
+          }
+        },
+        child: BlocBuilder<LoginBloc, LoginState>(
           bloc: _bloc,
-        );
-        return GestureDetector(
-          onTap: () => FocusScope.of(context).unfocus(),
-          child: Scaffold(
-            body: Stack(
-              children: [
-                SingleChildScrollView(
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      horizontal: 35.w,
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(height: 60.h),
-                        const LoginTitle(),
-                        SizedBox(height: 12.h),
-                        const LoginSubtitle(),
-                        SizedBox(height: 36.h),
-                        LoginForm(bloc: _bloc),
-                        SizedBox(height: 24.h),
-                        const ForgetPasswordText(),
-                        SizedBox(height: 143.h),
-                        const GoogleLoginButton(),
-                        SizedBox(height: 104.h),
-                        const SignUpText(),
-                        SizedBox(height: 42.h),
-                      ],
+          builder: (context, state) {
+            message(
+              context: context,
+              message: state.message,
+              isError: state.error,
+              bloc: _bloc,
+            );
+            return Scaffold(
+              body: Stack(
+                children: [
+                  SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 35.w,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 60.h),
+                          const LoginTitle(),
+                          SizedBox(height: 12.h),
+                          const LoginSubtitle(),
+                          SizedBox(height: 36.h),
+                          LoginForm(bloc: _bloc),
+                          SizedBox(height: 24.h),
+                          const ForgetPasswordText(),
+                          SizedBox(height: 143.h),
+                          const GoogleLoginButton(),
+                          SizedBox(height: 104.h),
+                          const SignUpText(),
+                          SizedBox(height: 42.h),
+                        ],
+                      ),
                     ),
                   ),
-                ),
-                if (state.isLoading) const Loader(),
-              ],
-            ),
-          ),
-        );
-      },
+                  if (state.isLoading) const Loader(),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
     );
   }
 }

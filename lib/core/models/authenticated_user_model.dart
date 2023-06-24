@@ -9,10 +9,12 @@ part 'authenticated_user_model.g.dart';
 class AuthenticatedUserModel extends AuthenticatedUser {
   static const String className = "AuthenticatedUserModel";
 
+  final UserModel user;
+
   const AuthenticatedUserModel({
     required super.token,
-    required super.user,
-  });
+    required this.user,
+  }) : super(user: user);
 
   factory AuthenticatedUserModel.fromJson(Map<String, dynamic> json) =>
       _$AuthenticatedUserModelFromJson(json);

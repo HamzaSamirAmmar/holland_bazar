@@ -9,6 +9,10 @@ abstract class SplashState
     implements Built<SplashState, SplashStateBuilder> {
   SplashState._();
 
+  bool? get showOnBoardingStatus;
+
+  bool? get isUserAuthenticated;
+
   factory SplashState([Function(SplashStateBuilder b) updates]) = _$SplashState;
 
   factory SplashState.initial() {
@@ -16,7 +20,9 @@ abstract class SplashState
       (b) => b
         ..isLoading = false
         ..message = ''
-        ..error = false,
+        ..error = false
+        ..showOnBoardingStatus = null
+        ..isUserAuthenticated = null,
     );
   }
 
