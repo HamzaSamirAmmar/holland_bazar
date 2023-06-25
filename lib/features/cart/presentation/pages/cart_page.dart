@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:holland_bazar/core/util/constants.dart';
+import 'package:holland_bazar/core/util/generate_screen.dart';
 import 'package:holland_bazar/core/widgets/buttons/custom_text_button.dart';
 import 'package:holland_bazar/core/widgets/loader.dart';
 import 'package:holland_bazar/features/cart/presentation/bloc/cart_bloc.dart';
@@ -276,7 +277,11 @@ class _CartPageState extends State<CartPage> {
                                 ),
                                 SizedBox(height: 23.h),
                                 CustomTextButton(
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    Navigator.of(context).pushNamed(
+                                      PageName.checkoutPage,
+                                    );
+                                  },
                                   width: 324.w,
                                   title: "Checkout",
                                   backgroundColor: Theme.of(context)

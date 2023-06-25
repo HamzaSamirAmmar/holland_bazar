@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:holland_bazar/features/offer/presentation/pages/offer_page.dart';
 
 import '../../features/cart/presentation/pages/cart_page.dart';
 import '../../features/categories/presentation/pages/categories_page.dart';
+import '../../features/checkout/presentation/pages/checkout_page.dart';
 import '../../features/login/presentation/pages/login_page.dart';
 import '../../features/main/presentation/pages/main_page.dart';
 import '../../features/onboarding_page/presentation/pages/onboarding_page.dart';
@@ -99,7 +101,22 @@ class GeneratePage {
       case PageName.cartPage:
         {
           return MaterialPageRoute(
-            builder: (context) => CartPage(),
+            builder: (context) => const CartPage(),
+          );
+        }
+
+      /**  offerPage **/
+      case PageName.offerPage:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const OfferPage(),
+          );
+        }
+      /**  checkoutPage **/
+      case PageName.checkoutPage:
+        {
+          return MaterialPageRoute(
+            builder: (context) => const CheckoutPage(),
           );
         }
 
@@ -179,4 +196,6 @@ class PageName {
   static const String categoriesPage = "/categories";
   static const String productDetailsPage = "/product-details";
   static const String cartPage = "/cart";
+  static const String offerPage = "/offer";
+  static const String checkoutPage = "/checkout";
 }

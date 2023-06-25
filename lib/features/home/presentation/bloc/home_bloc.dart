@@ -40,7 +40,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         /*** GetCategoriesEvent ***/
         if (event is GetCategoriesEvent) {
           if (!state.categories.isFinished) {
-            if (state.categories.currentPage == 0) {
+            if (state.categories.currentPage == 1) {
               emit(state.rebuild((b) => b..isLoading = true));
             } else {
               emit(state.rebuild((b) => b..categories.isLoading = true));
@@ -82,7 +82,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         /*** GetFrequentlyOrderedProductsEvent ***/
         if (event is GetFrequentlyOrderedProductsEvent) {
           if (!state.frequentlyOrderedProducts.isFinished) {
-            if (state.frequentlyOrderedProducts.currentPage == 0) {
+            if (state.frequentlyOrderedProducts.currentPage == 1) {
               emit(state.rebuild((b) => b..isLoading = true));
             } else {
               emit(state.rebuild(

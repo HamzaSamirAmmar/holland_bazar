@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:holland_bazar/core/util/generate_screen.dart';
 
 import '../../../../core/entities/category.dart';
 import '../../../../core/widgets/custom_cached_network_image.dart';
@@ -20,52 +21,60 @@ class CategoryCard extends StatelessWidget {
       padding: EdgeInsets.symmetric(
         horizontal: 8.w,
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(
-            width: 75.w,
-            height: 75.w,
-            clipBehavior: Clip.hardEdge,
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                width: 0.3,
-                color: const Color(0xFF707070),
+      child: GestureDetector(
+        onTap: () {
+          // case view all
+          if (category.name.isEmpty) {
+            Navigator.of(context).pushNamed(PageName.categoriesPage);
+          } else {}
+        },
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Container(
+              width: 75.w,
+              height: 75.w,
+              clipBehavior: Clip.hardEdge,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(12),
+                border: Border.all(
+                  width: 0.3,
+                  color: const Color(0xFF707070),
+                ),
               ),
-            ),
-            child: category.image.isNotEmpty
-                ? Center(
-                    child: localImage
-                        ? Image.asset(
-                            category.image,
-                            height: 45.h,
-                            width: 46.w,
-                          )
-                        : CustomCachedNetworkImage(
-                            imageUrl: category.image,
-                          ),
-                  )
-                : Center(
-                    child: Text(
-                      "View all",
-                      style: TextStyle(
-                        fontSize: 13.sp,
-                        fontWeight: FontWeight.bold,
+              child: category.image.isNotEmpty
+                  ? Center(
+                      child: localImage
+                          ? Image.asset(
+                              category.image,
+                              height: 45.h,
+                              width: 46.w,
+                            )
+                          : CustomCachedNetworkImage(
+                              imageUrl: category.image,
+                            ),
+                    )
+                  : Center(
+                      child: Text(
+                        "View all",
+                        style: TextStyle(
+                          fontSize: 13.sp,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-          ),
-          SizedBox(height: 5.h),
-          Text(
-            category.name,
-            style: TextStyle(
-              fontSize: 10.sp,
             ),
-          )
-        ],
+            SizedBox(height: 5.h),
+            Text(
+              category.name,
+              style: TextStyle(
+                fontSize: 10.sp,
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

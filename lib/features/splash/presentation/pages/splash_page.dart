@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
           if (state.isUserAuthenticated!) {
             Future.delayed(const Duration(seconds: 1)).whenComplete(
               () => Navigator.of(context)
-                  .pushNamedAndRemoveUntil(PageName.signUpPage, (route) => false),
+                  .pushNamedAndRemoveUntil(PageName.mainPage, (route) => false),
             );
           } else if (state.showOnBoardingStatus != null) {
             Future.delayed(const Duration(seconds: 1)).whenComplete(

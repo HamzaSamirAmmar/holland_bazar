@@ -33,12 +33,15 @@ class _MainPageState extends State<MainPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      resizeToAvoidBottomInset: false, // TODO: recheck this line
-      body: _pages[_currentIndex],
-      bottomNavigationBar: CustomBottomNavigationBar(
-        onTap: _onTap,
-        currentIndex: _currentIndex,
+    return GestureDetector(
+      onTap: () => FocusScope.of(context).unfocus(),
+      child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: _pages[_currentIndex],
+        bottomNavigationBar: CustomBottomNavigationBar(
+          onTap: _onTap,
+          currentIndex: _currentIndex,
+        ),
       ),
     );
   }

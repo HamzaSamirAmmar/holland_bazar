@@ -6,7 +6,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import '../usecases/usecase.dart';
 
 class Endpoints {
-  static const String baseUrl = "http://192.168.1.110:8000/api";
+  static const String baseUrl = "http://192.168.43.231:8000/api";
 
   static const String login = "/auth/login";
 
@@ -24,7 +24,12 @@ class Endpoints {
 
   static const String categories = "/categories";
 
+  static const String allProducts = "/products";
+
   static const String frequentlyOrdered =
+      "/products"; //"/products/frequentlyItems"; //FIXME: because the list is empty
+
+  static const String popularProducts =
       "/products"; //"/products/frequentlyItems"; //FIXME: because the list is empty
 
   static const String addToFavorite = "/products/userFavorites/create";
@@ -67,6 +72,7 @@ class IconsAssets {
 
 class ImagesAssets {
   static const String splashDots = "assets/images/splash_dots.png";
+  static const String categoriesHeader = "assets/images/categories_header.png";
   static const String splashTitle = "assets/images/splash_title.png";
   static const String splashFooter = "assets/images/splash_footer.png";
   static const String onboarding1 = "assets/images/onboarding_1.png";

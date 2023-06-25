@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:holland_bazar/features/cart/presentation/pages/cart_page.dart';
 
 import '../../core/util/over_scroll.dart';
 import 'core/util/generate_screen.dart';
